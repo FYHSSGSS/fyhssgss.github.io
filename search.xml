@@ -43,4 +43,31 @@
         <tag>ACM</tag>
       </tags>
   </entry>
+  <entry>
+    <title>babyECC</title>
+    <url>/2021/05/26/babyECC/</url>
+    <content><![CDATA[<h1 id="椭圆曲线初学"><a href="#椭圆曲线初学" class="headerlink" title="椭圆曲线初学"></a>椭圆曲线初学</h1><p>随手整理的，可能全是错。。</p>
+<p>椭圆曲线方程:$y^2=x^3+ax+b$，其中$a,b\in R$</p>
+<p>判别式：$\Delta = -16(4a^3+27b^2)\neq0$</p>
+<p>当$\Delta&gt;0$时，曲线有两个联通分量，$\Delta&lt;0$时候有一个联通分量。</p>
+<p><img src="/2021/05/26/babyECC/photo%5CECC01.png" alt="ECC1"></p>
+<h2 id="椭圆曲线的运算"><a href="#椭圆曲线的运算" class="headerlink" title="椭圆曲线的运算"></a>椭圆曲线的运算</h2><ul>
+<li><p>定义了一个$E$上的交换群，这个群以无穷远点$O$为单位元。</p>
+</li>
+<li><p>定义 + 运算子：取E上的两点$P$,$Q$，若两者相异，$P + Q$表示穿过$P$和$Q$的弦和椭圆曲线相交的第三点，再经x轴反射的镜像点；若两者是同一点，$P+P=2P$表示以$P$为切点和椭圆曲线相交的点再经x轴反射的镜像点。若P和Q的弦与y轴平行，$P+Q=0$（无限远点）。</p>
+</li>
+<li><p>性质1：$O+P=P+O$</p>
+</li>
+<li><p>性质2：$-P=(x,-y)$</p>
+</li>
+<li><p>具体运算：要是我上高中沉迷于圆锥曲线肯定是会动手算的，可惜现在早已没了当时的劲头：<br>$$<br>P_3=(x_3,y_3)=P_1+P_2\neq O</p>
+<p>\ x_3=k^2-x_1-x_2<br>\ y_3=k(x_1-x_3)-y_1<br>\其中k=\dfrac{y_2-y_1}{x_2-x_1},(x_1\neq x_2)或\dfrac{3x_1^2+a}{2y_1}.(x1=x_2)<br>$$</p>
+</li>
+</ul>
+<h2 id="有限域上的椭圆曲线"><a href="#有限域上的椭圆曲线" class="headerlink" title="有限域上的椭圆曲线"></a>有限域上的椭圆曲线</h2><p>模$P$,除法全变成逆元。</p>
+]]></content>
+      <tags>
+        <tag>school</tag>
+      </tags>
+  </entry>
 </search>
