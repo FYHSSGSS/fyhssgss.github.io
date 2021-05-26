@@ -230,7 +230,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-05-26 16:49:58 / 修改时间：21:59:58" itemprop="dateCreated datePublished" datetime="2021-05-26T16:49:58+08:00">2021-05-26</time>
+              <time title="创建时间：2021-05-26 16:49:58 / 修改时间：22:16:45" itemprop="dateCreated datePublished" datetime="2021-05-26T16:49:58+08:00">2021-05-26</time>
             </span>
 
           <br>
@@ -239,7 +239,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>540</span>
+              <span>539</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -262,7 +262,7 @@
 <p>椭圆曲线方程:$y^2=x^3+ax+b$，其中$a,b\in R$</p>
 <p>判别式：$\Delta = -16(4a^3+27b^2)\neq0$</p>
 <p>当$\Delta&gt;0$时，曲线有两个联通分量，$\Delta&lt;0$时候有一个联通分量。</p>
-<p><img src="/2021/05/26/babyECC/photo%5CECC01.png" alt="ECC1"></p>
+<p><img src="/2021/05/26/babyECC/ECC01.png" alt="ECC1"></p>
 <h2 id="椭圆曲线的运算"><a href="#椭圆曲线的运算" class="headerlink" title="椭圆曲线的运算"></a>椭圆曲线的运算</h2><ul>
 <li><p>定义了一个$E$上的交换群，这个群以无穷远点$O$为单位元。</p>
 </li>
@@ -272,9 +272,13 @@
 </li>
 <li><p>性质2：$-P=(x,-y)$</p>
 </li>
-<li><p>具体运算：要是我上高中沉迷于圆锥曲线肯定是会动手算的，可惜现在早已没了当时的劲头：<br>$$<br>P_3=(x_3,y_3)=P_1+P_2\neq O</p>
-<p>\ x_3=k^2-x_1-x_2<br>\ y_3=k(x_1-x_3)-y_1<br>\其中k=\dfrac{y_2-y_1}{x_2-x_1},(x_1\neq x_2)或\dfrac{3x_1^2+a}{2y_1}.(x1=x_2)<br>$$</p>
-</li>
+<li><p>具体运算：要是我上高中沉迷于圆锥曲线肯定是会动手算的，可惜现在早已没了当时的劲头：</p>
+<script type="math/tex; mode=display">
+P_3=(x_3,y_3)=P_1+P_2\neq O
+
+\\ x_3=k^2-x_1-x_2
+\\ y_3=k(x_1-x_3)-y_1
+\\其中k=\dfrac{y_2-y_1}{x_2-x_1},(x_1\neq x_2)或\dfrac{3x_1^2+a}{2y_1}.(x1=x_2)</script></li>
 </ul>
 <h2 id="有限域上的椭圆曲线"><a href="#有限域上的椭圆曲线" class="headerlink" title="有限域上的椭圆曲线"></a>有限域上的椭圆曲线</h2><p>模$P$,除法全变成逆元。</p>
 
@@ -515,16 +519,12 @@
       
           <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
 <h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
       
@@ -756,6 +756,7 @@
   if (typeof MathJax === 'undefined') {
     window.MathJax = {
       loader: {
+          load: ['[tex]/mhchem'],
         source: {
           '[tex]/amsCd': '[tex]/amscd',
           '[tex]/AMScd': '[tex]/amscd'
@@ -763,6 +764,7 @@
       },
       tex: {
         inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
         tags: 'ams'
       },
       options: {

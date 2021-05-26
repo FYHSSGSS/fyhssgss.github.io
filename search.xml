@@ -1,37 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2021/05/18/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>hellohexo</title>
-    <url>/2021/05/18/hellohexo/</url>
-    <content><![CDATA[<h2 id="hellohexo"><a href="#hellohexo" class="headerlink" title="hellohexo"></a>hellohexo</h2><p>之前一直想建一个像模像样的博客，因为各种事情一直搁置，终于，在国赛比完后的第二天一时兴起，决定要搭一个github博客，采用了hexo这个静态博客网站生成器，用的是next主题，可能还不是很好看，后期会逐渐完善的~</p>
-<p>本博客暂时先记录我在本科阶段打ctf的一些学习笔记和writeup，以及课内学的复习笔记（如果我用电脑复习的话），或者一些好玩的东西也尽量往上放。</p>
-]]></content>
-      <categories>
-        <category>life</category>
-      </categories>
-      <tags>
-        <tag>life</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Good Bye ACM</title>
     <url>/2021/05/20/Good-Bye-ACM/</url>
     <content><![CDATA[<h2 id="再见，Die-java"><a href="#再见，Die-java" class="headerlink" title="再见，Die_java"></a>再见，Die_java</h2><p>笔者是打OI出身的…高中时候用博客园建了个博客，链接是<a href="https://www.cnblogs.com/FYH-SSGSS">这个</a>。是专门记录做题的，后来高二退役之后就基本没碰，到了大一原计划是转方向打CTF的，但是十分神奇的听了学校宣讲就被拉去打ACM了，同时也组了队，队名是铲车人，英文名是Die_java于是那个博客园又变成了记录打ACM的记录，之后学校成立了wiki，把队内训练的记录全放在了<a href="https://wiki.buaaacm.com/doku.php?id=2020-2021:teams:Die_Java:front_page">这里</a>。在学校集训队摸爬滚打了大一下以及大一暑假，历经了十几次训练，最终，我们以校内第11队勉强出线了…在大二上的CCPC秦皇岛站拿了银，ICPC济南站拿了金（虽然是倒数第二）。回顾这一年来，各种酸甜苦辣尝尽后回看这两块牌子，真是回味无穷。尽管中间训练经常被暴打，很自闭，但还是坚持下来了，并拿了一个不错的成绩，感谢我的两位队友的carry，没有你们的陪同，我是不可能坚持到那一刻的。大二寒假，我们队内都不想打下一个赛季了，于是铲车人就光荣的退役啦！</p>
@@ -44,13 +13,27 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2021/05/18/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>babyECC</title>
     <url>/2021/05/26/babyECC/</url>
     <content><![CDATA[<h1 id="椭圆曲线初学"><a href="#椭圆曲线初学" class="headerlink" title="椭圆曲线初学"></a>椭圆曲线初学</h1><p>随手整理的，可能全是错。。</p>
 <p>椭圆曲线方程:$y^2=x^3+ax+b$，其中$a,b\in R$</p>
 <p>判别式：$\Delta = -16(4a^3+27b^2)\neq0$</p>
 <p>当$\Delta&gt;0$时，曲线有两个联通分量，$\Delta&lt;0$时候有一个联通分量。</p>
-<p><img src="/2021/05/26/babyECC/photo%5CECC01.png" alt="ECC1"></p>
+<p><img src="/2021/05/26/babyECC/ECC01.png" alt="ECC1"></p>
 <h2 id="椭圆曲线的运算"><a href="#椭圆曲线的运算" class="headerlink" title="椭圆曲线的运算"></a>椭圆曲线的运算</h2><ul>
 <li><p>定义了一个$E$上的交换群，这个群以无穷远点$O$为单位元。</p>
 </li>
@@ -60,14 +43,31 @@
 </li>
 <li><p>性质2：$-P=(x,-y)$</p>
 </li>
-<li><p>具体运算：要是我上高中沉迷于圆锥曲线肯定是会动手算的，可惜现在早已没了当时的劲头：<br>$$<br>P_3=(x_3,y_3)=P_1+P_2\neq O</p>
-<p>\ x_3=k^2-x_1-x_2<br>\ y_3=k(x_1-x_3)-y_1<br>\其中k=\dfrac{y_2-y_1}{x_2-x_1},(x_1\neq x_2)或\dfrac{3x_1^2+a}{2y_1}.(x1=x_2)<br>$$</p>
-</li>
+<li><p>具体运算：要是我上高中沉迷于圆锥曲线肯定是会动手算的，可惜现在早已没了当时的劲头：</p>
+<script type="math/tex; mode=display">
+P_3=(x_3,y_3)=P_1+P_2\neq O
+
+\\ x_3=k^2-x_1-x_2
+\\ y_3=k(x_1-x_3)-y_1
+\\其中k=\dfrac{y_2-y_1}{x_2-x_1},(x_1\neq x_2)或\dfrac{3x_1^2+a}{2y_1}.(x1=x_2)</script></li>
 </ul>
 <h2 id="有限域上的椭圆曲线"><a href="#有限域上的椭圆曲线" class="headerlink" title="有限域上的椭圆曲线"></a>有限域上的椭圆曲线</h2><p>模$P$,除法全变成逆元。</p>
 ]]></content>
       <tags>
         <tag>school</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hellohexo</title>
+    <url>/2021/05/18/hellohexo/</url>
+    <content><![CDATA[<h2 id="hellohexo"><a href="#hellohexo" class="headerlink" title="hellohexo"></a>hellohexo</h2><p>之前一直想建一个像模像样的博客，因为各种事情一直搁置，终于，在国赛比完后的第二天一时兴起，决定要搭一个github博客，采用了hexo这个静态博客网站生成器，用的是next主题，可能还不是很好看，后期会逐渐完善的~</p>
+<p>本博客暂时先记录我在本科阶段打ctf的一些学习笔记和writeup，以及课内学的复习笔记（如果我用电脑复习的话），或者一些好玩的东西也尽量往上放。</p>
+]]></content>
+      <categories>
+        <category>life</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
       </tags>
   </entry>
 </search>
