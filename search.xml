@@ -97,7 +97,7 @@ y_3=k(x_1-x_3)-y_1</script><script type="math/tex; mode=display">
 <p>首先看利用链的重点，需要绕过md5和sha1，目前我所知的绕过方法只有数组，但是数组绕过后，eval没法执行数组，所以没法用数组绕。</p>
 <p>参考了这篇文章<a href="https://mayi077.gitee.io/2020/08/14/%E5%88%A9%E7%94%A8-Exception%E7%B1%BB-%E7%BB%95%E8%BF%87md5-sha1-%E7%AD%89%E7%B3%BB%E5%88%97/">https://mayi077.gitee.io/2020/08/14/%E5%88%A9%E7%94%A8-Exception%E7%B1%BB-%E7%BB%95%E8%BF%87md5-sha1-%E7%AD%89%E7%B3%BB%E5%88%97/</a></p>
 <p>大概思路就是找到一个类的两个对象，使得他们的__tostring函数一样然而对象不一样，找到了Exception类，他的tostring就是异常的信息。这样是可以绕过的，那么问题就是如何利用eval，可以看到这个tostring后面还有很多乱七八糟的代码，</p>
-<p><img src="/2021/06/06/bluecat/hexo\source\_posts\bluecat\assets\image-20210606102237400.png" alt="image-20210606102237400"></p>
+<p><img src="/2021/06/06/bluecat/assets/image-20210606102237400.png" alt="image-20210606102237400"></p>
 <p>所以我们需要?&gt;闭合php方可进行RCE。</p>
 <p>然后开始从头开始找链子，所有魔术方法中只有Titanic的析构函数能作为入口，这里面调用了一个对象的action，然后进行了赋值，这块很明显就是用Jack类的<code>__set</code>方法激活，这个方法会再调用一个函数，现在只剩下Love类的<code>__call</code>方法，call这块会进行一个函数回调，传入一个Rose类的话就会调用<code>__invoke</code>，然后就完了。</p>
 <p>因为exception类里有private和protected类型，所以最终一定要url编码！！（被这卡了半天真是蠢死了</p>
