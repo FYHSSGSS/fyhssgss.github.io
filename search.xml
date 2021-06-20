@@ -38,7 +38,14 @@ y_3=k(x_1-x_3)-y_1</script><script type="math/tex; mode=display">
 其中k=\dfrac{y_2-y_1}{x_2-x_1},(x_1\neq x_2)或\dfrac{3x_1^2+a}{2y_1}.(x1=x_2)</script></li>
 </ul>
 <h2 id="素域上的椭圆曲线"><a href="#素域上的椭圆曲线" class="headerlink" title="素域上的椭圆曲线"></a>素域上的椭圆曲线</h2><p>模$P$,除法全变成逆元。</p>
-<h2 id="GF-2-n-上的椭圆曲线"><a href="#GF-2-n-上的椭圆曲线" class="headerlink" title="$GF(2^n)$上的椭圆曲线"></a>$GF(2^n)$上的椭圆曲线</h2><h2 id="具体应用"><a href="#具体应用" class="headerlink" title="具体应用"></a>具体应用</h2><ul>
+<h2 id="GF-2-n-上的椭圆曲线"><a href="#GF-2-n-上的椭圆曲线" class="headerlink" title="$GF(2^n)$上的椭圆曲线"></a>$GF(2^n)$上的椭圆曲线</h2><h2 id="椭圆曲线上的加解密"><a href="#椭圆曲线上的加解密" class="headerlink" title="椭圆曲线上的加解密"></a>椭圆曲线上的加解密</h2><p>用户A的私钥$n_A$,公钥为$P_A=n_A\times G$</p>
+<p>用户A的私钥$n_B$,公钥为$P_A=n_B\times G$</p>
+<p>A将消息$P_m$加密过程：</p>
+<ul>
+<li>选取随机数$k$,密文$C_m=\{kG,P_m+kP_B\}$，简记为$\{C_1,C_2\}$</li>
+</ul>
+<p>解密过程：$C_2-n_BC_1=P_m+kP_B-kn_BG=P_m$，解密完成。</p>
+<h2 id="具体应用"><a href="#具体应用" class="headerlink" title="具体应用"></a>具体应用</h2><ul>
 <li><p>求一条椭圆曲线的阶，这个可以用schoof算法在多项式时间内解决。</p>
 <blockquote>
 <p><a href="https://en.wikipedia.org/wiki/Schoof&#39;s_algorithm">schoof链接</a></p>
