@@ -45,6 +45,11 @@ y_3=k(x_1-x_3)-y_1</script><script type="math/tex; mode=display">
 <li>选取随机数$k$,密文$C_m=\{kG,P_m+kP_B\}$，简记为$\{C_1,C_2\}$</li>
 </ul>
 <p>解密过程：$C_2-n_BC_1=P_m+kP_B-kn_BG=P_m$，解密完成。</p>
+<h2 id="椭圆曲线上的密钥交换"><a href="#椭圆曲线上的密钥交换" class="headerlink" title="椭圆曲线上的密钥交换"></a>椭圆曲线上的密钥交换</h2><p>用户A的私钥$n_A$,公钥为$P_A=n_A\times G$</p>
+<p>用户A的私钥$n_B$,公钥为$P_A=n_B\times G$</p>
+<p>A产生的密钥$K=n_A\times P_B$,B产生的密钥为$K=n_B\times P_A$</p>
+<p>可以发现$n_A\times P_B = n_A\times n_B\times G = n_B \times P_A$</p>
+<p>可以进行密钥交换。</p>
 <h2 id="具体应用"><a href="#具体应用" class="headerlink" title="具体应用"></a>具体应用</h2><ul>
 <li><p>求一条椭圆曲线的阶，这个可以用schoof算法在多项式时间内解决。</p>
 <blockquote>
@@ -61,7 +66,7 @@ y_3=k(x_1-x_3)-y_1</script><script type="math/tex; mode=display">
 </li>
 </ul>
 <p>原以为这些都要自己手动实现，后来经助教确认不用了，那就简单记录一下sage里面椭圆曲线的用法</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">E = EllipticCurve(GF(p), [a, b]) <span class="comment">#表示生成一个参数为a,b,p的椭圆曲线</span></span><br><span class="line">E.order() <span class="comment">#群的阶</span></span><br><span class="line">P = E.random_point() <span class="comment">#随机一点</span></span><br><span class="line">P = E(xxxxx,yyyy) <span class="comment">#点的坐标</span></span><br><span class="line">P.order() <span class="comment">#元素的阶</span></span><br><span class="line">P.discrete_log(Q) <span class="comment">#P,Q是曲线上两点，尝试去求离散对数</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">E = EllipticCurve(GF(p), [a, b]) <span class="comment">#表示生成一个参数为a,b,p的椭圆曲线</span></span><br><span class="line">E.order() <span class="comment">#群的阶</span></span><br><span class="line">E.gen() <span class="comment">#生成元</span></span><br><span class="line">P = E.random_point() <span class="comment">#随机一点</span></span><br><span class="line">P = E(xxxxx,yyyy) <span class="comment">#点的坐标</span></span><br><span class="line">P.order() <span class="comment">#元素的阶</span></span><br><span class="line">P.discrete_log(Q) <span class="comment">#P,Q是曲线上两点，尝试去求离散对数</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>school</tag>
