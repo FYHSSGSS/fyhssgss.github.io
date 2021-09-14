@@ -381,6 +381,7 @@ y_3=k(x_1-x_3)-y_1</script><script type="math/tex; mode=display">
     <title>rctf2021.md</title>
     <url>/2021/09/13/rctf2021/</url>
     <content><![CDATA[<h1 id="rctf2021"><a href="#rctf2021" class="headerlink" title="rctf2021"></a>rctf2021</h1><h2 id="废话"><a href="#废话" class="headerlink" title="废话"></a>废话</h2><p>基本是躺的比赛，白天对着php源码看了半天也没看出来漏洞，然后去看密码，只要能分解出一个512bit的数就能出了，可惜分不得。再看去misc，图片那个题误以为p,q,m很大，考虑一堆不同的像素点列几万个方程z3去解，上传上去wget下来发现图片有压缩觉得不可做于是立刻放弃。ezshell那个网上抄了个冰蝎马的代码，编译出.class丢给队友，服务器直接500了，后来发现是jdk版本太高，就交给队友去下载新版本了。回了趟宿舍睡了个觉，早上一醒发现队友们已经把miscAK了，同时又把一个web一个pwn干出来了，最后排名是21，虽然是20名交writeup，但也真的太牛了。。很难过的反思自己为什么这么废物了一上午后决定好好去复盘一下这场比赛。</p>
+<span id="more"></span>
 <h2 id="easyphp"><a href="#easyphp" class="headerlink" title="easyphp"></a>easyphp</h2><p>拿到源码先审，很显然是要admin登进去，用户名是admin，但是密码我们无法获取。</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="variable">$request</span>-&gt;data-&gt;username === <span class="variable">$username</span> &amp;&amp; <span class="variable">$request</span>-&gt;data-&gt;password === <span class="variable">$password</span>)&#123;</span><br><span class="line">        <span class="variable">$_SESSION</span>[<span class="string">&quot;user&quot;</span>] = <span class="variable">$username</span>;</span><br><span class="line">        <span class="variable">$app</span>-&gt;redirect(<span class="string">&quot;/&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>此处表明我们需要有user的session才能去登入admin，另外在此处也发现了一点东西：</p>
@@ -427,6 +428,6 @@ y_3=k(x_1-x_3)-y_1</script><script type="math/tex; mode=display">
 <p>至此，我们思路很清晰了，对<code>../</code>进行二次编码<code>..%252f</code>，第一次解码是在nginx层，解码为<code>..%2f</code>后传给php-fpm，这个不会被当成<code>/</code>，所以<code>$request-&gt;url</code>不变，第二次解码是在<code>request.php</code>中的<code>init</code>中，解完之后<code>$_GET[data]</code>就是<code>../</code>了，我们就能任意路径穿越去读文件了。</p>
 <p>最终payload：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://124.71.132.232:60080/..%2f/admin%3flogin=&amp;data=..%252f..%252f..%252f..%252fflag</span><br></pre></td></tr></table></figure>
-]]></content>
+<h2 id="candyshop"><a href="#candyshop" class="headerlink" title="candyshop"></a>candyshop</h2>]]></content>
   </entry>
 </search>
