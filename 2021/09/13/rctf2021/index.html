@@ -20,30 +20,37 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"scrollpercent":true,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Do you like what you see">
-<meta property="og:type" content="website">
-<meta property="og:title" content="FYHSSGSS&#39;s blog">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="rctf2021废话基本是躺的比赛，白天对着php源码看了半天也没看出来漏洞，然后去看密码，只要能分解出一个512bit的数就能出了，可惜分不得。再看去misc，图片那个题误以为p,q,m很大，考虑一堆不同的像素点列几万个方程z3去解，上传上去wget下来发现图片有压缩觉得不可做于是立刻放弃。ezshell那个网上抄了个冰蝎马的代码，编译出.class丢给队友，服务器直接500了，后来发现是jdk">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rctf2021.md">
+<meta property="og:url" content="http://example.com/2021/09/13/rctf2021/index.html">
 <meta property="og:site_name" content="FYHSSGSS&#39;s blog">
-<meta property="og:description" content="Do you like what you see">
+<meta property="og:description" content="rctf2021废话基本是躺的比赛，白天对着php源码看了半天也没看出来漏洞，然后去看密码，只要能分解出一个512bit的数就能出了，可惜分不得。再看去misc，图片那个题误以为p,q,m很大，考虑一堆不同的像素点列几万个方程z3去解，上传上去wget下来发现图片有压缩觉得不可做于是立刻放弃。ezshell那个网上抄了个冰蝎马的代码，编译出.class丢给队友，服务器直接500了，后来发现是jdk">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/09/13/rctf2021/assets/image-20210914001902249.png">
+<meta property="og:image" content="http://example.com/2021/09/13/rctf2021/assets/image-20210914001923674.png">
+<meta property="og:image" content="http://example.com/2021/09/13/rctf2021/assets/image-20210914004841582.png">
+<meta property="og:image" content="http://example.com/2021/09/13/rctf2021/assets/image-20210914005001611.png">
+<meta property="article:published_time" content="2021-09-13T07:22:07.000Z">
+<meta property="article:modified_time" content="2021-09-14T06:50:24.235Z">
 <meta property="article:author" content="FYHSSGSS">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/09/13/rctf2021/assets/image-20210914001902249.png">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2021/09/13/rctf2021/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>FYHSSGSS's blog</title>
+  <title>rctf2021.md | FYHSSGSS's blog</title>
   
 
 
@@ -199,9 +206,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -217,10 +225,9 @@
       <meta itemprop="name" content="FYHSSGSS's blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/13/rctf2021/" class="post-title-link" itemprop="url">rctf2021.md</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          rctf2021.md
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -264,7 +271,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="rctf2021"><a href="#rctf2021" class="headerlink" title="rctf2021"></a>rctf2021</h1><h2 id="废话"><a href="#废话" class="headerlink" title="废话"></a>废话</h2><p>基本是躺的比赛，白天对着php源码看了半天也没看出来漏洞，然后去看密码，只要能分解出一个512bit的数就能出了，可惜分不得。再看去misc，图片那个题误以为p,q,m很大，考虑一堆不同的像素点列几万个方程z3去解，上传上去wget下来发现图片有压缩觉得不可做于是立刻放弃。ezshell那个网上抄了个冰蝎马的代码，编译出.class丢给队友，服务器直接500了，后来发现是jdk版本太高，就交给队友去下载新版本了。回了趟宿舍睡了个觉，早上一醒发现队友们已经把miscAK了，同时又把一个web一个pwn干出来了，最后排名是21，虽然是20名交writeup，但也真的太牛了。。很难过的反思自己为什么这么废物了一上午后决定好好去复盘一下这场比赛。</p>
+        <h1 id="rctf2021"><a href="#rctf2021" class="headerlink" title="rctf2021"></a>rctf2021</h1><h2 id="废话"><a href="#废话" class="headerlink" title="废话"></a>废话</h2><p>基本是躺的比赛，白天对着php源码看了半天也没看出来漏洞，然后去看密码，只要能分解出一个512bit的数就能出了，可惜分不得。再看去misc，图片那个题误以为p,q,m很大，考虑一堆不同的像素点列几万个方程z3去解，上传上去wget下来发现图片有压缩觉得不可做于是立刻放弃。ezshell那个网上抄了个冰蝎马的代码，编译出.class丢给队友，服务器直接500了，后来发现是jdk版本太高，就交给队友去下载新版本了。回了趟宿舍睡了个觉，早上一醒发现队友们已经把miscAK了，同时又把一个web一个pwn干出来了，最后排名是21，虽然是20名交writeup，但也真的太牛了。。很难过的反思自己为什么这么废物了一上午后决定好好去复盘一下这场比赛。</p>
 <h2 id="easyphp"><a href="#easyphp" class="headerlink" title="easyphp"></a>easyphp</h2><p>拿到源码先审，很显然是要admin登进去，用户名是admin，但是密码我们无法获取。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="variable">$request</span>-&gt;data-&gt;username === <span class="variable">$username</span> &amp;&amp; <span class="variable">$request</span>-&gt;data-&gt;password === <span class="variable">$password</span>)&#123;</span><br><span class="line">        <span class="variable">$_SESSION</span>[<span class="string">&quot;user&quot;</span>] = <span class="variable">$username</span>;</span><br><span class="line">        <span class="variable">$app</span>-&gt;redirect(<span class="string">&quot;/&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>此处表明我们需要有user的session才能去登入admin，另外在此处也发现了一点东西：</p>
@@ -312,591 +319,30 @@
 <p>最终payload：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://124.71.132.232:60080/..%2f/admin%3flogin=&amp;data=..%252f..%252f..%252f..%252fflag</span><br></pre></td></tr></table></figure>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/26/%E7%9B%B4%E5%8D%87%E6%9C%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/saiki.jpg">
-      <meta itemprop="name" content="FYHSSGSS">
-      <meta itemprop="description" content="Do you like what you see">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FYHSSGSS's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/26/%E7%9B%B4%E5%8D%87%E6%9C%BA/" class="post-title-link" itemprop="url">航概期末绝杀</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-26 16:01:54" itemprop="dateCreated datePublished" datetime="2021-06-26T16:01:54+08:00">2021-06-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-27 07:57:32" itemprop="dateModified" datetime="2021-06-27T07:57:32+08:00">2021-06-27</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="航概期末绝杀"><a href="#航概期末绝杀" class="headerlink" title="航概期末绝杀"></a>航概期末绝杀</h2><p>航概期末绝杀的，前两天刷的第一遍题库毛也没记住，考前13个小时开始重新二刷，连刷带整理，连续肝了12个小时，刷了两千道题。</p>
-<p>这是顺手整理的阴间资料，总算是把考试挺过去了。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/26/%E7%9B%B4%E5%8D%87%E6%9C%BA/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/06/Web-Training-Sqli-labs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/saiki.jpg">
-      <meta itemprop="name" content="FYHSSGSS">
-      <meta itemprop="description" content="Do you like what you see">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FYHSSGSS's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/06/Web-Training-Sqli-labs/" class="post-title-link" itemprop="url">Web-Training:Sqli-labs</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-06-06 16:17:17 / 修改时间：16:17:34" itemprop="dateCreated datePublished" datetime="2021-06-06T16:17:17+08:00">2021-06-06</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/06/bluecat/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/saiki.jpg">
-      <meta itemprop="name" content="FYHSSGSS">
-      <meta itemprop="description" content="Do you like what you see">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FYHSSGSS's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/06/bluecat/" class="post-title-link" itemprop="url">bluecat</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-06-06 10:13:28 / 修改时间：16:09:33" itemprop="dateCreated datePublished" datetime="2021-06-06T10:13:28+08:00">2021-06-06</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5.7k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="蓝帽杯复赛Web方向WP"><a href="#蓝帽杯复赛Web方向WP" class="headerlink" title="蓝帽杯复赛Web方向WP"></a>蓝帽杯复赛Web方向WP</h1><p>信息论考试推迟，导致又能去蓝帽杯线下了，可惜主办方跟我们说你们还是线上打吧，但是外地旅游的去意已决，最后硬着头皮和队友们还有学长去哈尔滨了，这波叫去线下打线上赛。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/06/bluecat/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/06/26/%E7%9B%B4%E5%8D%87%E6%9C%BA/" rel="prev" title="航概期末绝杀">
+      <i class="fa fa-chevron-left"></i> 航概期末绝杀
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/26/babyECC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/saiki.jpg">
-      <meta itemprop="name" content="FYHSSGSS">
-      <meta itemprop="description" content="Do you like what you see">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FYHSSGSS's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/26/babyECC/" class="post-title-link" itemprop="url">babyECC</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-26 16:49:58" itemprop="dateCreated datePublished" datetime="2021-05-26T16:49:58+08:00">2021-05-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-20 18:42:04" itemprop="dateModified" datetime="2021-06-20T18:42:04+08:00">2021-06-20</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="椭圆曲线初学"><a href="#椭圆曲线初学" class="headerlink" title="椭圆曲线初学"></a>椭圆曲线初学</h1><p>随手整理的，可能全是错。。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/05/26/babyECC/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/20/Good-Bye-ACM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/saiki.jpg">
-      <meta itemprop="name" content="FYHSSGSS">
-      <meta itemprop="description" content="Do you like what you see">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FYHSSGSS's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/20/Good-Bye-ACM/" class="post-title-link" itemprop="url">Good Bye ACM</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-20 11:21:39 / 修改时间：11:35:06" itemprop="dateCreated datePublished" datetime="2021-05-20T11:21:39+08:00">2021-05-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ACM/" itemprop="url" rel="index"><span itemprop="name">ACM</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>399</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="再见，Die-java"><a href="#再见，Die-java" class="headerlink" title="再见，Die_java"></a>再见，Die_java</h2><p>笔者是打OI出身的…高中时候用博客园建了个博客，链接是<a target="_blank" rel="noopener" href="https://www.cnblogs.com/FYH-SSGSS">这个</a>。是专门记录做题的，后来高二退役之后就基本没碰，到了大一原计划是转方向打CTF的，但是十分神奇的听了学校宣讲就被拉去打ACM了，同时也组了队，队名是铲车人，英文名是Die_java于是那个博客园又变成了记录打ACM的记录，之后学校成立了wiki，把队内训练的记录全放在了<a target="_blank" rel="noopener" href="https://wiki.buaaacm.com/doku.php?id=2020-2021:teams:Die_Java:front_page">这里</a>。在学校集训队摸爬滚打了大一下以及大一暑假，历经了十几次训练，最终，我们以校内第11队勉强出线了…在大二上的CCPC秦皇岛站拿了银，ICPC济南站拿了金（虽然是倒数第二）。回顾这一年来，各种酸甜苦辣尝尽后回看这两块牌子，真是回味无穷。尽管中间训练经常被暴打，很自闭，但还是坚持下来了，并拿了一个不错的成绩，感谢我的两位队友的carry，没有你们的陪同，我是不可能坚持到那一刻的。大二寒假，我们队内都不想打下一个赛季了，于是铲车人就光荣的退役啦！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/18/hellohexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/saiki.jpg">
-      <meta itemprop="name" content="FYHSSGSS">
-      <meta itemprop="description" content="Do you like what you see">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FYHSSGSS's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/18/hellohexo/" class="post-title-link" itemprop="url">hellohexo</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-18 21:01:59 / 修改时间：21:19:47" itemprop="dateCreated datePublished" datetime="2021-05-18T21:01:59+08:00">2021-05-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/life/" itemprop="url" rel="index"><span itemprop="name">life</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>189</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="hellohexo"><a href="#hellohexo" class="headerlink" title="hellohexo"></a>hellohexo</h2><p>之前一直想建一个像模像样的博客，因为各种事情一直搁置，终于，在国赛比完后的第二天一时兴起，决定要搭一个github博客，采用了hexo这个静态博客网站生成器，用的是next主题，可能还不是很好看，后期会逐渐完善的~</p>
-<p>本博客暂时先记录我在本科阶段打ctf的一些学习笔记和writeup，以及课内学的复习笔记（如果我用电脑复习的话），或者一些好玩的东西也尽量往上放。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/18/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/saiki.jpg">
-      <meta itemprop="name" content="FYHSSGSS">
-      <meta itemprop="description" content="Do you like what you see">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FYHSSGSS's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/18/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-18 12:45:18" itemprop="dateCreated datePublished" datetime="2021-05-18T12:45:18+08:00">2021-05-18</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>367</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -949,6 +395,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#rctf2021"><span class="nav-number">1.</span> <span class="nav-text">rctf2021</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%9F%E8%AF%9D"><span class="nav-number">1.1.</span> <span class="nav-text">废话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#easyphp"><span class="nav-number">1.2.</span> <span class="nav-text">easyphp</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -1111,61 +558,6 @@
   
 
   
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-          load: ['[tex]/mhchem'],
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-          packages: {'[+]': ['mhchem']},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 
