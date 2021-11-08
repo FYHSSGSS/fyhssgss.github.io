@@ -236,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-08 20:58:38" itemprop="dateModified" datetime="2021-11-08T20:58:38+08:00">2021-11-08</time>
+                <time title="修改时间：2021-11-08 23:08:43" itemprop="dateModified" datetime="2021-11-08T23:08:43+08:00">2021-11-08</time>
               </span>
 
           <br>
@@ -322,7 +322,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-04 15:03:58" itemprop="dateModified" datetime="2021-11-04T15:03:58+08:00">2021-11-04</time>
+                <time title="修改时间：2021-11-08 23:13:23" itemprop="dateModified" datetime="2021-11-08T23:13:23+08:00">2021-11-08</time>
               </span>
 
           <br>
@@ -350,53 +350,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="oracle数据库实验整理"><a href="#oracle数据库实验整理" class="headerlink" title="oracle数据库实验整理"></a>oracle数据库实验整理</h1><ul>
-<li>TNS数据库监听端口1521</li>
-<li>MTS端口2258 ‘Oracle Services for Microsoft Transaction Server’ 的端口</li>
-<li>HTTP监听端口9090</li>
-</ul>
-<p>千万别用8080！会和burp冲突，当时打比赛的时候直接一键删除了oracle，结果重装的时候差点被吓死。</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43620238/article/details/84497520">https://blog.csdn.net/weixin_43620238/article/details/84497520</a></p>
-<p>用管理员身份在cmd里删除注册表后才叫彻底删除。</p>
-<p>重装后参考了这篇博客<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40391559/article/details/88854961，把http端口改成了9090。">https://blog.csdn.net/qq_40391559/article/details/88854961，把http端口改成了9090。</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc delete OracleServiceXE</span><br></pre></td></tr></table></figure>
-<h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create user root identified by root;</span><br><span class="line">设置权限</span><br><span class="line">grant dba to root;</span><br></pre></td></tr></table></figure>
-<h3 id="无用户名登录"><a href="#无用户名登录" class="headerlink" title="无用户名登录"></a>无用户名登录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sqlplus / as sysdba;</span><br><span class="line">sqlplus sys/nolog as sysdba;</span><br></pre></td></tr></table></figure>
-<h3 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sqlplus username/pwd@ip:port/orcl as sysdba</span><br><span class="line">as sysdba是以系统管理员的身份来登录</span><br><span class="line">普通用户：</span><br><span class="line">sqlplus username/pwd</span><br></pre></td></tr></table></figure>
-<p>dba：Database Administrator数据库管理员</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name,dbid from v$database;查看数据库名</span><br></pre></td></tr></table></figure>
-<h3 id="developer图形化界面连接数据库："><a href="#developer图形化界面连接数据库：" class="headerlink" title="developer图形化界面连接数据库："></a>developer图形化界面连接数据库：</h3><p>将主机名修改为localhost即可。</p>
-<p><img src="/2021/10/14/oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E9%AA%8C%E6%95%B4%E7%90%86/assets/image-20211014152202324.png" alt="image-20211014152202324"></p>
-<p>oracle不会像mysql一样每一条都执行，需要在最后手动执行<code>commit;</code>指令进行提交。（叫提交修改）</p>
-<h3 id="oracle表空间"><a href="#oracle表空间" class="headerlink" title="oracle表空间"></a>oracle表空间</h3><p>ORACLE数据库被划分成称作为表空间的逻辑区域——形成ORACLE数据库的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/逻辑结构">逻辑结构</a>。一个ORACLE数据库能够有一个或多个表空间,而一个表空间则对应着一个或多个物理的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/数据库文件">数据库文件</a>。表空间是ORACLE<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/数据库恢复">数据库恢复</a>的最小单位,容纳着许多数据库实体,如表、视图、索引、聚簇、回退段和临时段等。</p>
-<h4 id="查看表空间："><a href="#查看表空间：" class="headerlink" title="查看表空间："></a>查看表空间：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from v$tablespace;</span><br></pre></td></tr></table></figure>
-<p><img src="/2021/10/14/oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E9%AA%8C%E6%95%B4%E7%90%86/assets/image-20211027160409438.png" alt="image-20211027160409438"></p>
-<p><img src="/2021/10/14/oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E9%AA%8C%E6%95%B4%E7%90%86/assets/image-20211027160353930.png" alt="image-20211027160353930"></p>
-<p>可以发现是能对应上的。</p>
-<h4 id="查看每个表空间有哪些数据文件："><a href="#查看每个表空间有哪些数据文件：" class="headerlink" title="查看每个表空间有哪些数据文件："></a>查看每个表空间有哪些数据文件：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">desc dba_data_files;</span><br></pre></td></tr></table></figure>
-<h4 id="查看详细数据文件："><a href="#查看详细数据文件：" class="headerlink" title="查看详细数据文件："></a>查看详细数据文件：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select file_name,tablespace_name from dba_data_files;</span><br></pre></td></tr></table></figure>
-<h4 id="新建表空间"><a href="#新建表空间" class="headerlink" title="新建表空间"></a>新建表空间</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/starnight_cbj/article/details/6792364">https://blog.csdn.net/starnight_cbj/article/details/6792364</a></p>
-<h3 id="修改字符集"><a href="#修改字符集" class="headerlink" title="修改字符集"></a>修改字符集</h3><h4 id="查看当前字符集"><a href="#查看当前字符集" class="headerlink" title="查看当前字符集"></a>查看当前字符集</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select userenv(&#x27;language&#x27;) from dual;</span><br></pre></td></tr></table></figure>
-<p>实验要求要修改为ZHS16GBK，不知道为啥要往小了变。</p>
-<h3 id="create表"><a href="#create表" class="headerlink" title="create表"></a>create表</h3><p>创建一个外键约束</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE child_table (</span><br><span class="line">    ...</span><br><span class="line">    CONSTRAINT fk_name</span><br><span class="line">    FOREIGN KEY(col1, col2,...) REFERENCES parent_table(col1,col2) </span><br><span class="line">    ON DELETE [ CASCADE | SET NULL ]</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>ON DELETE CASCADE:如果父表中的一行被删除，那么子表中引用被删除行的所有行都将被删除。</p>
-<p>ON DELETE SET NULL:如果父表中的一行被删除，那么对于外键列，子表中引用被删除行的所有行将被设置为NULL。</p>
-<p>一个表可以有多个外键约束</p>
-<h3 id="drop表"><a href="#drop表" class="headerlink" title="drop表"></a>drop表</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop table countries;</span><br></pre></td></tr></table></figure>
-<h3 id="删表所有内容"><a href="#删表所有内容" class="headerlink" title="删表所有内容"></a>删表所有内容</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from abc;</span><br></pre></td></tr></table></figure>
-<h3 id="查询当前用户所有表："><a href="#查询当前用户所有表：" class="headerlink" title="查询当前用户所有表："></a>查询当前用户所有表：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from all_tables where owner=&#x27;OT&#x27;</span><br></pre></td></tr></table></figure>
-<p>insert的时候前后加上</p>
-<ol>
-<li><p>REM INSERTING into database1.”Users”</p>
-</li>
-<li><p>SET DEFINE OFF;</p>
-<p>的原因：默认情况下，<a target="_blank" rel="noopener" href="https://www.jb51.cc/tag/sql/">sql</a> Plus处理’&amp;’作为开始替换字符串的特殊字符。这可能会导致运行脚本的问题，而这些脚本恰好包含’&amp;’由于其他原因：</p>
-<p>如果您知道您的脚本包含(或可能包含)包含“&amp;”的数据字符，并且您不想像上述那样执行替换行为，然后在运行脚本时使用set define off<a target="_blank" rel="noopener" href="https://www.jb51.cc/tag/guanbi/">关闭</a>该行为：</p>
-</li>
-</ol>
-<h3 id="oracle-tips"><a href="#oracle-tips" class="headerlink" title="oracle tips"></a>oracle tips</h3><p>在Oracle里，表的别名不能用as,列的别名可以用as</p>
-
+          <h1 id="oracle数据库实验整理"><a href="#oracle数据库实验整理" class="headerlink" title="oracle数据库实验整理"></a>oracle数据库实验整理</h1><p>一门0.5学分的选修课，学一学另一种著名的关系型数据库oracle的一些基本操作。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/14/oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E9%AA%8C%E6%95%B4%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1224,7 +1186,7 @@
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">47 分钟</span>
+    <span title="站点阅读时长">48 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
