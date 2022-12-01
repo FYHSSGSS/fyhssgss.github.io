@@ -1301,7 +1301,16 @@ y_3=k(x_1-x_3)-y_1</script><script type="math/tex; mode=display">
 </li>
 </ul>
 <p>fastjson的修法也是个迷，看上去只有两个字”摆烂”</p>
-<h4 id="fastjson-1-2-22-1-2-24-JdbcRowSetImpl利用链"><a href="#fastjson-1-2-22-1-2-24-JdbcRowSetImpl利用链" class="headerlink" title="fastjson 1.2.22-1.2.24 JdbcRowSetImpl利用链"></a>fastjson 1.2.22-1.2.24 JdbcRowSetImpl利用链</h4><h3 id="java内存马"><a href="#java内存马" class="headerlink" title="java内存马"></a>java内存马</h3><h4 id="filters型内存马"><a href="#filters型内存马" class="headerlink" title="filters型内存马"></a>filters型内存马</h4><p>filter是类似servelet的过滤器，根据用户定义的过滤器去匹配路由然后对request和response进行相应的处理。filters的内存马就是动态插入一个<code>/*</code>的过滤器在开头，来进行命令执行，这样每次访问的时候都必先走这个过滤器，实现内存马的注入。</p>
+<h4 id="fastjson-1-2-22-1-2-24-JdbcRowSetImpl利用链"><a href="#fastjson-1-2-22-1-2-24-JdbcRowSetImpl利用链" class="headerlink" title="fastjson 1.2.22-1.2.24 JdbcRowSetImpl利用链"></a>fastjson 1.2.22-1.2.24 JdbcRowSetImpl利用链</h4><h3 id="hessian"><a href="#hessian" class="headerlink" title="hessian"></a>hessian</h3><p><a href="https://paper.seebug.org/1131/">https://paper.seebug.org/1131/</a></p>
+<p>看一些hessian的一些链子的时候看到了有spring内部一些组件的链子，心想为什么正常java的反序列化打不通必须得用hessian，于是进行了搜索，本地搭环境发现是因为<code>Exception in thread &quot;main&quot; java.lang.RuntimeException: Serialized class org.springframework.jndi.support.SimpleJndiBeanFactory must implement java.io.Serializable</code>。</p>
+<p>然后为什么hessian可以呢，其实发现也是不行的，但是能够进行一些修改使得可以：<a href="https://xz.aliyun.com/t/7235#toc-2">https://xz.aliyun.com/t/7235#toc-2</a></p>
+<blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&gt;NoWriteReplaceSerializerFactory sf = <span class="keyword">new</span> NoWriteReplaceSerializerFactory();</span><br><span class="line">&gt;sf.setAllowNonSerializable(<span class="keyword">true</span>);</span><br><span class="line">&gt;out.setSerializerFactory(sf);</span><br></pre></td></tr></table></figure>
+<p>而这部分代码，对输出流进行了设置，因为我们知道，一般对于对象的序列化，如果对象对应的class没有对java.io.Serializable进行实现implement的话，是没办法序列化的，所以这里对输出流进行了设置，使其可以输出没有实现java.io.Serializable接口的对象</p>
+</blockquote>
+<p>理解的还是比较浅，还需深刻学习。</p>
+<p><a href="https://f002.backblazeb2.com/file/sec-news-backup/files/writeup/blog.csdn.net/_u011721501_article_details_79443598/index.html">https://f002.backblazeb2.com/file/sec-news-backup/files/writeup/blog.csdn.net/_u011721501_article_details_79443598/index.html</a> 这篇文章说了为什么yso的链子直接接到hessian上不行，因为序列化的底层代码不一样，构造出的对象在序列化和反序列化过程中就有很不同的差距，更有甚者可能会有自己日自己的效果。</p>
+<h3 id="java内存马"><a href="#java内存马" class="headerlink" title="java内存马"></a>java内存马</h3><h4 id="filters型内存马"><a href="#filters型内存马" class="headerlink" title="filters型内存马"></a>filters型内存马</h4><p>filter是类似servelet的过滤器，根据用户定义的过滤器去匹配路由然后对request和response进行相应的处理。filters的内存马就是动态插入一个<code>/*</code>的过滤器在开头，来进行命令执行，这样每次访问的时候都必先走这个过滤器，实现内存马的注入。</p>
 <p>怎么写进去这个过滤器就是一个问题</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">StandardContext context = (StandardContext)wrapper.getParent();</span><br><span class="line">FilterMap[] filterMaps = context.findFilterMaps();</span><br></pre></td></tr></table></figure>
 <p>先人已经分析出来这个过滤器是通过context中获取的了，所以要想写入过滤器就需要想方设法获取上下文，方法有很多，有从request里拿的，有从线程里拿的，还有从mbean里拿的（都没有仔细跟过</p>
@@ -1613,6 +1622,50 @@ y_3=k(x_1-x_3)-y_1</script><script type="math/tex; mode=display">
 </li>
 </ul>
 <p>综上，这个利用payload是巧妙的将php对url中get变量的分离与argv变量的分离构造出来的，虽然很简单，但不得不说很巧妙。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>neo4j&amp;tabby学习</title>
+    <url>/2022/12/01/neo4j-tabby%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>一昧的学习别人挖出来的链子是没有用的，一定会是在新的一场比赛会给你ban掉的，唯独掌握了自己挖链子的能力才可以。</p>
+<span id="more"></span>
+<h1 id="tabby-amp-neo4j语法学习"><a href="#tabby-amp-neo4j语法学习" class="headerlink" title="tabby&amp;neo4j语法学习"></a>tabby&amp;neo4j语法学习</h1><h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>分别参考了如下：</p>
+<blockquote>
+<p><a href="https://github.com/wh1t3p1g/tabby/wiki/Neo4j环境配置">Neo4j环境配置 · wh1t3p1g/tabby Wiki (github.com)</a> 安装neo4j环境</p>
+<p><a href="https://github.com/wh1t3p1g/tabby/wiki/Tabby食用指北">Tabby食用指北 · wh1t3p1g/tabby Wiki (github.com)</a> </p>
+<p><a href="https://blog.csdn.net/Xxy605/article/details/123663537">(23条消息) 『Java安全』tabby代码审计工具Windows环境搭建_Xxy605的博客-CSDN博客</a> </p>
+</blockquote>
+<p>省流版：git clone下来后用idea打开，然后gradle刷新一下再idea里运行即可，不用每次java -jar。</p>
+<p>这玩意运行起来很吃电脑内存，所以建议用好点的电脑去跑。</p>
+<h2 id="neo4j语法"><a href="#neo4j语法" class="headerlink" title="neo4j语法"></a>neo4j语法</h2><p>懒得硬看官方文档了，参考了这篇博客：</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/han_xiaoxue/article/details/78902027">(23条消息) 数据库 —— neo4j的基本语句_wei_aiwan的博客-CSDN博客_neo4j 语句</a></p>
+</blockquote>
+<p>时间紧急，就直接上手结合tabby来进行类搜索与查找了。</p>
+<h2 id="tabby基本使用"><a href="#tabby基本使用" class="headerlink" title="tabby基本使用"></a>tabby基本使用</h2><p>不知道这个东西能不能带污点分析。</p>
+<blockquote>
+<p><a href="https://blog.z3ratu1.cn/tabby使用入门.html">tabby使用入门 | Z3ratu1’s blog</a></p>
+</blockquote>
+<p>我这里做了一个测试，配置文件关键部分这么写的：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">tabby.build.target</span>                    = <span class="string">cases/commons-collections-3.2.1.jar</span></span><br><span class="line"><span class="meta">tabby.build.libraries</span>                 = <span class="string">path/to/lib #这块暂时是空的</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># load to neo4j</span></span><br><span class="line"><span class="meta">tabby.load.enable</span>                     = <span class="string">true</span></span><br></pre></td></tr></table></figure>
+<p>所以结合jdk扫描了cc组件，但是具体哪个jdk我还不知道…（暂且留坑）</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CALL</span> db.schema.visualization()</span><br></pre></td></tr></table></figure>
+<p>查看数据库基本情况。</p>
+<p><img src="/2022/12/01/neo4j-tabby%E5%AD%A6%E4%B9%A0/assets/image-20221201143753856.png" alt="image-20221201143753856"></p>
+<p>这是一张非常重要的图，展示了tabby为我们提取出的类型，一个是class，一个是method，同时他们之间有一些关系，其他都比较好说，重点是这个<code>alias</code>关系举个例子，大概就是object的tostring，和某个类overwrite的tostring的方法之间的关系。</p>
+<p>通过几个事例感受一下语法：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">match</span> (source:<span class="keyword">Method</span>) <span class="keyword">where</span> source.NAME <span class="operator">=</span> &quot;readObject&quot; <span class="keyword">return</span> source limit <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/12/01/neo4j-tabby%E5%AD%A6%E4%B9%A0/assets/image-20221201144708705.png" alt="image-20221201144708705"></p>
+<p>说一下我的见解，上述语句就跟类似的<code>select method as source from table where source.name=&quot;readObject&quot; limit 10;</code>一样，具体的节点用括号包裹起来<code>(name:type)</code>，<code>name</code>是你给你查找的元素的命名，后面为元素类型，然后后面的where从句就和sql完全一样，根据你要查找的类型的一些约束写一些判断句，具体类型的参数我们可以通过点击元素右边的提示栏查看当前元素的属性值。</p>
+<p>当然通过上面的部分我们只能查到一些节点，我们怎么才能找到一个通路呢?</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">match</span> path<span class="operator">=</span>(source:<span class="keyword">Method</span>)<span class="operator">-</span>[:<span class="keyword">CALL</span>]<span class="operator">-</span><span class="operator">&gt;</span>(sink:<span class="keyword">Method</span>)</span><br><span class="line"><span class="keyword">where</span> source.NAME <span class="operator">=</span><span class="operator">~</span> &quot;get.+&quot; <span class="keyword">and</span> sink.NAME<span class="operator">=</span>&quot;readObject&quot;</span><br><span class="line"><span class="keyword">return</span> path</span><br></pre></td></tr></table></figure>
+<p>这个不太好用sql语言类比了，但是我们能够直观的感受出来<code>()-[]-&gt;[]</code>这是一条通路，两边端到端，中间的边以上面为例，就是寻找CALL类型的调用链路，然后这个链路用<code>path=</code>赋值，然后<code>return path</code></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">match</span> (source:<span class="keyword">Method</span>)<span class="operator">-</span>[:<span class="keyword">CALL</span><span class="operator">|</span>ALIAS<span class="operator">*</span>.<span class="number">.3</span>]<span class="operator">-</span><span class="operator">&gt;</span>(sink:<span class="keyword">Method</span>)</span><br></pre></td></tr></table></figure>
+<p>如果这个链子不知道有多长，可以用<code>*..3</code>这种方式大概限制一下链的最大长度。</p>
+<h2 id="tabby-path-finder"><a href="#tabby-path-finder" class="headerlink" title="tabby-path-finder"></a>tabby-path-finder</h2><p>可能是那个污点分析的插件，要用java11的maven编译，之前一直嫌弃wsl的java11很不常用，现在伏笔了。</p>
+<p>装完之后正常导入插件即可使用，可能就是一个爆搜+剪枝的插件，不知道污点分析做的如何。</p>
+<p><img src="/2022/12/01/neo4j-tabby%E5%AD%A6%E4%B9%A0/assets/image-20221201162710915.png" alt="image-20221201162710915"></p>
+<p>先摆一会。</p>
 ]]></content>
   </entry>
 </search>
