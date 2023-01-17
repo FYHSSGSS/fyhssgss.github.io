@@ -1698,6 +1698,13 @@ y_3=k(x_1-x_3)-y_1</script><script type="math/tex; mode=display">
 <p>当然这道题最牛逼的还是黑盒测出来@解析bug，感觉这种问题应该很常见，大佬应该通过这种方式收获一连串CVE了吧。</p>
 <p>关于@的解析歧义问题，想起来之前网鼎2020的一道SSRFme，那里就是curl和parse_url的解析在@这个字符上产生了歧义。</p>
 <p><img src="/2023/01/13/rwctf2023/assets/image-20230114184717827.png" alt="image-20230114184717827"></p>
+<p>事后翻阅了<code>socket.io.js</code>的源码，在1760行，老哥手写的正则表达式：</p>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230117171929034.png" alt="image-20230117171929034"></p>
+<p>不得不佩服写正则的哥们，真的勇，我们用regex101.com看一看这个正则：</p>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230117172040437.png" alt="image-20230117172040437"></p>
+<p>我们只需要关注group 6分组即可，因为parts数组下标为6就是host，也就是我们劫持的目标。</p>
+<p><img src="/2023/01/13/rwctf2023/assets/image-20230117172327587.png" alt="image-20230117172327587"></p>
+<p>可以看到，通过@，group6成功抓到了@后面的东西当做host。</p>
 <p>对前端题其实一直挺反感的，归根到底就是因为啥也不会，导致下一道the cult of 8 bit完全看不懂，还是得系统学一学。</p>
 <h2 id="The-Dark-Portal"><a href="#The-Dark-Portal" class="headerlink" title="The Dark Portal"></a>The Dark Portal</h2><p>感觉这个题有点0ctf2022tomcat的ajp走私+幽灵猫组合洞的题，前半段是基于题目信息和黑盒打day。</p>
 <p>首先访问题目会返回给我们一段wsdl，很好，我也不知道这是啥，简单搜搜是干啥的：</p>
